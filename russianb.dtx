@@ -12,11 +12,11 @@ Russian language module for Babel, v1.3j
 Released under the LaTeX Project Public License v1.3c or later.
 See http://www.latex-project.org/lppl.txt
 
-The package provides support for use of Babel in documents written in Russian
-(in both traditional and ancient forms). The support is adapted for use both
-under legacy TEX engines, and under X∃TEX and LuaTEX.
+The module provides support for use of Babel package in documents written in
+Russian (in both traditional and ancient forms). The support is adapted for use
+both under legacy TEX engines, and under X∃TEX and LuaTEX.
 
-The Current Maintainer is Igor A. Kotelnikov <kia999 at mail dot ru>.
+The current maintainer is Igor A. Kotelnikov <kia999 at mail dot ru>.
 
 
 1. INSTALLATION
@@ -26,7 +26,7 @@ The Current Maintainer is Igor A. Kotelnikov <kia999 at mail dot ru>.
   or "pdflatex.exe russianb.dtx";
   run "tex.exe russianb.dtx"
   or "tex.exe russianb.ins", if you don't need documentation
-- move "russianb.ldf" to <textmf>/tex/generic/babel/contrib/
+- move "russianb.ldf" to <textmf>/tex/latex/babel-russian
 - move "russianb.pdf" and README to <textmf>/doc/latex/russian-babel/
 - update filename base (see documentation for your TeX system)
 
@@ -74,8 +74,8 @@ In the examples below, it is assumed that a source file has utf8 input encoding.
     \usepackage[english,russian]{babel}
 
 Instead of the Computer Modern Unicode (CMU) fonts loaded in this example,
-you may try any True Type or Open Type font installed on your computer provided
-that that font came with Russian letters.
+you may try any True Type or Open Type fonts installed on your computer provided
+that those fonts came with Russian letters.
 
 2.3 Typesetting ancient book
 
@@ -119,7 +119,7 @@ might be absent.
 
 5. CHANGES
 
-2017-01-12 version 1.3j
+2017-01-22 version 1.3j
 
     * Bug fixed in \NOD, \NOK and similar log-functions (thanks to V. Vlasov).
 
@@ -208,7 +208,7 @@ See http://www.latex-project.org/lppl.txt
 \endpreamble
 \postamble
 ----------------------------------------------------------------
-Copyright 2011-2017 Igor A. Kotelnikov.
+Copyright 2011--    Igor A. Kotelnikov.
 Copyright 1995-2008 Olga Lapko.
 Copyright 1989-2012 Johannes L. Braams.
 
@@ -255,8 +255,8 @@ and the derived files             russianb.ins,
 %</internal>
 %<*code>
 \NeedsTeXFormat{LaTeX2e}
-%\ProvidesFile{russianb.ldf}[2017/01/12 1.3j Russian support for the Babel system]
-\ProvidesLanguage{russianb}[2017/01/12 1.3j Russian support for the Babel system]
+%\ProvidesFile{russianb.ldf}[2017 Jan 22 1.3j Russian support for the Babel system]
+\ProvidesLanguage{russianb}[2017 Jan 22 1.3j Russian support for the Babel system]
 %</code>
 %<*driver>
 \documentclass[a4paper]{ltxdoc}
@@ -401,6 +401,29 @@ and the derived files             russianb.ins,
 \end{document}
 %</driver>
 % \fi
+%
+% \DoNotIndex{\cyra,\cyrb,\cyrv,\cyrg,\cyrd,\cyre}
+% \DoNotIndex{\CYRP,\cyrii,\cyrr,\cyre,\cyro,\CYRU,\cyrk,\cyrl,\CYRS,\cyrs|}
+% \DoNotIndex{\cyrt,\cyri,\cyrz,\CYRT,\cyrm}
+% \DoNotIndex{\cyr,\cyrc,\CYRD,\cyrery,\cyrh,\CYRK,\CYRM,\CYRN,\cyrn}
+% \DoNotIndex{\cyrp,\cyrs,\cyrshch,\cyru,\CYRV,\cyrya}
+% \DoNotIndex{\CYRA,\CYRB,\cyrch,\CYRE,\CYREREV,\CYRF,\cyrf,\CYRI,\cyrishrt}
+% \DoNotIndex{\CYRO,\CYRR,\cyrsftsn,\CYRYA,\cyryu,\cyrzh}
+% \DoNotIndex{\CYRSH,\cyrsh,\CYRSHCH,\CYRYU,\CYRZ,\CYRZH,\CYRG,\CYRH}
+% \DoNotIndex{\z@skip,\z@}
+% \DoNotIndex{\|,\~,\ }
+% \DoNotIndex{\\&,\',\(,\),\`,\\,\/,\.}
+% \DoNotIndex{\begin,\DeclareUTFcharacter}
+% \DoNotIndex{\csname,\def}
+% \DoNotIndex{\else,\endcsname,\end}
+% \DoNotIndex{\expandafter,\fi}
+% \DoNotIndex{\hbox,\hss}
+% \DoNotIndex{\iffalse,\ifx,\ignorespaces,\iflanguage}
+% \DoNotIndex{\language,\lastskip,\ldots,\let,\natexlab,\newblock,\nobreak}
+% \DoNotIndex{\providecommand,\ProvideTextCommandDefault,\relax,\renewcommand}
+% \DoNotIndex{\selectlanguage,\selectlanguageifdefined,\small,\textemdash}
+% \DoNotIndex{\or,\if,\fi,\unskip,\url,\UTFencname}
+% \DoNotIndex{\,,\catcode,\cite,\citeauthor,\citet,\citeyear,\href,\hskip,\ifdim}
 %
 %\GetFileInfo{russianb.dtx}
 %\GetFileInfo{russianb.ldf}
@@ -972,7 +995,7 @@ and the derived files             russianb.ins,
 % \end{itemize}
 %
 %\StopEventually{^^A
-%  \setlength{\postmulticols}{100pt} % 20pt by default
+%  \setlength{\postmulticols}{100pt} ^^A %%% 20pt by default ***
 %  \PrintChanges
 %  \PrintIndex
 %}
@@ -984,26 +1007,26 @@ and the derived files             russianb.ins,
 %
 %    \section{Implementation}
 %
-% \changes{1.3h}{2016/02/18}{\cs{cyrdash} is redefined}
-% \changes{1.3h}{2016/02/18}{Bugs fixed in captions for revtex4 and revtex4-1}
-% \changes{1.3g}{2015/05/01}{Added support for revtex4 and revtex4-1 classes}
-% \changes{1.3f}{2014/10/21}{Update documentation for generating by pdflatex.exe}
-% \changes{1.3e}{2014/10/14}{Update documentation}
-% \changes{1.3d}{2014/10/02}{Fix bug in \cs{Proj}}
-% \changes{1.3c}{2014/06/02}{Fix bug in \cs{daterussian}}
-% \changes{1.3b}{2013/04/06}{Renamed to russianb to work with babel 3.9}
-% \changes{1.2b}{2013/01/08}{Renamed to russianu to work with babel-beta 3.9}
-% \changes{1.2a}{2012/06/06}{Indentation of 1st paragraph removed}
-% \changes{1.1c}{1996/07/11}{Replaced \cs{undefined} with
+% \changes{1.3h}{2016 Feb 18}{\cs{cyrdash} is redefined}
+% \changes{1.3h}{2016 Feb 18}{Bugs fixed in captions for revtex4 and revtex4-1}
+% \changes{1.3g}{2015 May 01}{Added support for revtex4 and revtex4-1 classes}
+% \changes{1.3f}{2014 Oct 21}{Update documentation for generating by pdflatex.exe}
+% \changes{1.3e}{2014 Oct 14}{Update documentation}
+% \changes{1.3d}{2014 Oct 02}{Fix bug in \cs{Proj}}
+% \changes{1.3c}{2014 Jun 02}{Fix bug in \cs{daterussian}}
+% \changes{1.3b}{2013 Apr 06}{Renamed to russianb to work with babel 3.9}
+% \changes{1.2b}{2013 Jan 08}{Renamed to russianu to work with babel-beta 3.9}
+% \changes{1.2a}{2012 Jun 06}{Indentation of 1st paragraph removed}
+% \changes{1.1c}{1996 Jul 11}{Replaced \cs{undefined} with
 %    \cs{@undefined} and \cs{empty} with \cs{@empty} for consistency
 %    with \LaTeX}
-% \changes{1.1d}{1996/10/10}{Moved the definition of
+% \changes{1.1d}{1996 Oct 10}{Moved the definition of
 %    \cs{atcatcode} right to the beginning.}
 % \changes{1.1k}{1999/08/19}{replaced all \cs{penalty}\cs{@M}
 %    with \cs{nobreak}}
-% \changes{1.1f}{1998/06/26}{%
+% \changes{1.1f}{1998 Jun 26}{%
 %    Added definitions of Cyrillic emdash stuff and thinspace}
-% \changes{1.1f}{1998/06/26}{%
+% \changes{1.1f}{1998 Jun 26}{%
 %    Added definitions of Cyrillic emdash stuff and thinspace}
 %
 %
@@ -1035,7 +1058,7 @@ and the derived files             russianb.ins,
 %    (note that babel loads this file right when it processes its own options)
 %    but we borrow code from these packages.
 %
-% \changes{1.2}{2011/10/20}{Check for LuaTeX}
+% \changes{1.2}{2011 Oct 20}{Check for LuaTeX}
 %    \begin{macrocode}
 \ifdefined\if@uni@ode
   \PackageError{babel}{if@uni@ode already defined.\MessageBreak
@@ -1074,7 +1097,7 @@ and the derived files             russianb.ins,
 %    Xe\LaTeX\ and \texttt{EU2} in case of Lua\LaTeX.
 %
 %  \begin{macro}{\latinencoding}
-% \changes{1.2}{2011/10/20}{Removed \cs{latinencoding}}
+% \changes{1.2}{2011 Oct 20}{Removed \cs{latinencoding}}
 %
 %    The macro |\latinencoding| keeps the name of Latin encoding. It is
 %    defined in \file{babel.def} and is wrapped into |\AtBeginDocument| to allow
@@ -1144,7 +1167,7 @@ and the derived files             russianb.ins,
 %    encodings are kept for Unicode compilers (Lua\LaTeX\ and Xe\LaTeX) since
 %    they can run in compatibility (8-bit) mode.
 %
-% \changes{1.2}{2011/10/20}{EU1 and EU2  encodings added}
+% \changes{1.2}{2011 Oct 20}{EU1 and EU2  encodings added}
 %    \begin{macrocode}
 \def\@setcyrillicencoding{%
   \def\sce@a##1##2{%
@@ -1181,7 +1204,7 @@ and the derived files             russianb.ins,
 %    encoding definitions; we use the lowercase names (i.e.,
 %    \texttt{lcyenc.def} instead of \texttt{LCYenc.def}) when we do that.
 %
-% \changes{1.2}{2011/10/20}{Removed test for present of
+% \changes{1.2}{2011 Oct 20}{Removed test for present of
 %    encoding files}
 %    \begin{macrocode}
 \ifdefined\cyrillicencoding
@@ -1260,7 +1283,7 @@ and the derived files             russianb.ins,
 %    in \file{russianb.ldf}'s counterpart in the package \pkg{polyglossia},
 %    analog of \pkg{babel} for Xe\LaTeX.
 %
-% \changes{1.2}{2011/10/20}{Removed \cs{English} macro}
+% \changes{1.2}{2011 Oct 20}{Removed \cs{English} macro}
 %    \begin{macrocode}
 %%\DeclareRobustCommand{\English}{%
 %%  \fontencoding\latinencoding\selectfont
@@ -1301,9 +1324,9 @@ and the derived files             russianb.ins,
 %   Since |\latintext| is defined by the core of babel we do not repeat its
 %   definition here.
 %
-% \changes{1.1o}{2003/10/12}{\cs{latintext} is already
+% \changes{1.1o}{2003 Oct 12}{\cs{latintext} is already
 %    defined by the core of babel}
-% \changes{1.2}{2011/10/20}{\cs{lat} removed}
+% \changes{1.2}{2011 Oct 20}{\cs{lat} removed}
 %    \begin{macrocode}
 %\DeclareRobustCommand{\latintext}{%
 %  \fontencoding{\latinencoding}\selectfont
@@ -1319,7 +1342,7 @@ and the derived files             russianb.ins,
 %    The macro |\textcyrillic| takes an argument which is then typeset using the
 %    requested font encoding. It is thus an equivalent or
 %    |\foreignlangauge{russian}|.
-% \changes{1.1o}{2003/10/12}{\cs{textlatin} already defined
+% \changes{1.1o}{2003 Oct 12}{\cs{textlatin} already defined
 %    by the core of babel}
 %    \begin{macrocode}
 \DeclareTextFontCommand{\textcyrillic}{\cyrillictext}
@@ -1341,8 +1364,8 @@ and the derived files             russianb.ins,
 %
 % \changes{1.1l}{1999/08/27}{Made not using inputenc a
 %    warning instead of an error}
-% \changes{1.2}{2011/10/11}{Added EU1 and EU2 encodings}
-% \changes{1.2}{2011/10/11}{Removed LWN encoding}
+% \changes{1.2}{2011 Oct 11}{Added EU1 and EU2 encodings}
+% \changes{1.2}{2011 Oct 11}{Removed LWN encoding}
 %    \begin{macrocode}
 \@ifpackageloaded{inputenc}{%
  \if@uni@ode
@@ -1376,9 +1399,9 @@ and the derived files             russianb.ins,
 \initiate@active@char{"}
 %    \end{macrocode}
 %
-% \changes{1.1f}{1998/06/26}{Added switch for
+% \changes{1.1f}{1998 Jun 26}{Added switch for
 %    doublequote shorthands}
-% \changes{1.3}{2013/01/10}{Removed switch for
+% \changes{1.3}{2013 Jan 10}{Removed switch for
 %    doublequote shorthands}
 %
 %  \begin{macro}{\mdqon}
@@ -1516,8 +1539,8 @@ and the derived files             russianb.ins,
 %   \texttt{T2*} switching of languages also changes the emdash length typed as
 %   ligature in the source file.
 %
-% \changes{1.2}{2011/10/20}{Warning is added if \cs{cyrdash} defined}
-% \changes{1.3h}{2016/02/18}{\cs{cyrdash} is redefined}
+% \changes{1.2}{2011 Oct 20}{Warning is added if \cs{cyrdash} defined}
+% \changes{1.3h}{2016 Feb 18}{\cs{cyrdash} is redefined}
 % |\textthreequartersemdash|=!\textthreequartersemdash!
 %    \begin{macrocode}
 %\ifx\cyrdash\undefined
@@ -1528,7 +1551,7 @@ and the derived files             russianb.ins,
     {\hbox to.8em{--\hss--}}{\textemdash}}
 %    \end{macrocode}
 %
-% \changes{1.1f}{1998/06/26}{%
+% \changes{1.1f}{1998 Jun 26}{%
 %    Add macro for thin space between initials}
 %
 %    Finally, we define a shorthand thin space to be placed between initials
@@ -1568,7 +1591,7 @@ and the derived files             russianb.ins,
 %    since it causes error at compilation time in case if \LaTeX\ is running
 %    and \texttt{utf8} input encoding is not declared.
 %
-% \changes{1.2}{2011/10/20}{Unicode code-points added for LuaLaTeX}
+% \changes{1.2}{2011 Oct 20}{Unicode code-points added for LuaLaTeX}
 %    \begin{macrocode}
 \if@uni@ode
   %\captionsrussian@modern
@@ -1651,7 +1674,7 @@ and the derived files             russianb.ins,
   \fi
 %    \end{macrocode}
 %
-% \changes{1.3h}{2016/02/18}{Revtex captions fixed}
+% \changes{1.3h}{2016 Feb 18}{Revtex captions fixed}
 %    Now we proceed to the ancient version in Unicode encoding.
 %    \begin{macrocode}
   \addto\captionsrussian@ancient{%
@@ -1867,7 +1890,7 @@ and the derived files             russianb.ins,
 % \Describe\daterussian{}
 %    The macro |\daterussian| is used to reset the macro |\today| in Russian.
 %
-% \changes{1.2}{2011/10/20}{Unicode code-points added for LuaLaTeX}
+% \changes{1.2}{2011 Oct 20}{Unicode code-points added for LuaLaTeX}
 %    \begin{macrocode}
 \if@uni@ode
   \addto\daterussian{%
@@ -1944,11 +1967,11 @@ and the derived files             russianb.ins,
 %    As of v.1.2 we removed a definition for |\englishhyphenmins|. It is
 %    not deal of \file{russianb.ldf}.
 %
-% \changes{1.1a}{1995/07/04}{use \cs{russianhyphenmins} to
+% \changes{1.1a}{1995 Jul 04}{use \cs{russianhyphenmins} to
 %    store the correct values}
 % \changes{1.1m}{2000/09/22}{Now use \cs{providehyphenmins} to
 %    provide a default value}
-% \changes{1.2}{2011/10/20}{\cs{englishhyphenmins} is removed}
+% \changes{1.2}{2011 Oct 20}{\cs{englishhyphenmins} is removed}
 %    \begin{macrocode}
 \providehyphenmins{\CurrentOption}{\tw@\tw@}
 \providehyphenmins{russian}{\tw@\tw@}
@@ -1964,7 +1987,7 @@ and the derived files             russianb.ins,
 %    The macro |\noextrasrussian| is used to cancel the actions of
 %    |\extrasrussian|.
 %
-% \changes{1.1b}{1996/02/20}{Added switch to \texttt{LWN}
+% \changes{1.1b}{1996 Feb 20}{Added switch to \texttt{LWN}
 %    encoding}
 %
 %    First, we instruct \pkg{babel} to switch font encoding using earlier
@@ -2167,7 +2190,7 @@ and the derived files             russianb.ins,
 %    macro |\th| that conflicts with the text symbol |\th|
 %    defined in Latin~1 encoding:
 %
-% \changes{1.2}{2004/05/21}{Change definition of \cs{th}
+% \changes{1.2}{2004 May  21}{Change definition of \cs{th}
 %    only for this language}
 %    \begin{macrocode}
 \def\sh{\mathop{\operator@font sh}\nolimits}
@@ -2194,7 +2217,7 @@ and the derived files             russianb.ins,
 %    \DescribeOther\NOK{}%
 %    \DescribeOther\Proj{}%
 %    Finally, we define some rare Russian mathematical symbols:
-% \changes{1.3i}{2017/01/04}{\cs{NOD} and similar log-functions fixed}
+% \changes{1.3i}{2017 Jan 04}{\cs{NOD} and similar log-functions fixed}
 %    \begin{macrocode}
 \def\Prob{\mathop{\kern\z@\mathsf{P}}\nolimits}
 \def\Variance{\mathop{\kern\z@\mathsf{D}}\nolimits}
@@ -2237,5 +2260,8 @@ and the derived files             russianb.ins,
 %\iffalse
 %</code>
 %\fi
+%
 % \CheckSum{2326}
+%
 %\Finale
+%
