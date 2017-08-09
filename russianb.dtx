@@ -12,11 +12,11 @@ Russian language module for Babel, v1.3j
 Released under the LaTeX Project Public License v1.3c or later.
 See http://www.latex-project.org/lppl.txt
 
-The module provides support for use of Babel package in documents written in
-Russian (in both traditional and ancient forms). The support is adapted for use
-both under legacy TEX engines, and under X∃TEX and LuaTEX.
+The package provides support for use of Babel in documents written in Russian
+(in both traditional and ancient forms). The support is adapted for use both
+under legacy TEX engines, and under X∃TEX and LuaTEX.
 
-The current maintainer is Igor A. Kotelnikov <kia999 at mail dot ru>.
+The Current Maintainer is Igor A. Kotelnikov <kia999 at mail dot ru>.
 
 
 1. INSTALLATION
@@ -26,7 +26,7 @@ The current maintainer is Igor A. Kotelnikov <kia999 at mail dot ru>.
   or "pdflatex.exe russianb.dtx";
   run "tex.exe russianb.dtx"
   or "tex.exe russianb.ins", if you don't need documentation
-- move "russianb.ldf" to <textmf>/tex/latex/babel-russian
+- move "russianb.ldf" to <textmf>/tex/generic/babel/contrib/
 - move "russianb.pdf" and README to <textmf>/doc/latex/russian-babel/
 - update filename base (see documentation for your TeX system)
 
@@ -74,8 +74,8 @@ In the examples below, it is assumed that a source file has utf8 input encoding.
     \usepackage[english,russian]{babel}
 
 Instead of the Computer Modern Unicode (CMU) fonts loaded in this example,
-you may try any True Type or Open Type fonts installed on your computer provided
-that those fonts came with Russian letters.
+you may try any True Type or Open Type font installed on your computer provided
+that that font came with Russian letters.
 
 2.3 Typesetting ancient book
 
@@ -119,7 +119,10 @@ might be absent.
 
 5. CHANGES
 
-2017-01-22 version 1.3j
+2017-08-08 version 1.3j
+
+    * TU encoding is set as default for XeTeX and LuaTeX; EU1 and EU2 encodings
+      are kept for backward compatibility.
 
     * Bug fixed in \NOD, \NOK and similar log-functions (thanks to V. Vlasov).
 
@@ -208,7 +211,7 @@ See http://www.latex-project.org/lppl.txt
 \endpreamble
 \postamble
 ----------------------------------------------------------------
-Copyright 2011--    Igor A. Kotelnikov.
+Copyright 2011-2017 Igor A. Kotelnikov.
 Copyright 1995-2008 Olga Lapko.
 Copyright 1989-2012 Johannes L. Braams.
 
@@ -255,8 +258,7 @@ and the derived files             russianb.ins,
 %</internal>
 %<*code>
 \NeedsTeXFormat{LaTeX2e}
-%\ProvidesFile{russianb.ldf}[2017 Jan 22 1.3j Russian support for the Babel system]
-\ProvidesLanguage{russianb}[2017 Jan 22 1.3j Russian support for the Babel system]
+%\ProvidesFile{russianb.ldf}[2017/08/08 1.3j Russian support for the Babel system]
 %</code>
 %<*driver>
 \documentclass[a4paper]{ltxdoc}
@@ -347,6 +349,7 @@ and the derived files             russianb.ins,
      ,\cyr,\cyrillictext,\textcyrillic,\cyrillicencoding
      ,\addto,\captionsrussian,\daterussian,\noextrasrussian,\extrasrussian
      ,\languageattribute
+     ,\glqq,\grqq,\guillemotleft,\guillemotright
      ,\Asbuk,\asbuk,\ch,\sh,\tg,\ctg,\arctg,\arcctg\,\th,\cth,\cosec
      ,\nod3,\nok,\prog,\NOF\,\NOK,\Prog
      ,\dq,\Proj,\nod,\NOD,\nok,\NOK,\Prob,\Variance
@@ -409,33 +412,14 @@ and the derived files             russianb.ins,
 % \DoNotIndex{\cyrp,\cyrs,\cyrshch,\cyru,\CYRV,\cyrya}
 % \DoNotIndex{\CYRA,\CYRB,\cyrch,\CYRE,\CYREREV,\CYRF,\cyrf,\CYRI,\cyrishrt}
 % \DoNotIndex{\CYRO,\CYRR,\cyrsftsn,\CYRYA,\cyryu,\cyrzh}
-% \DoNotIndex{\CYRSH,\cyrsh,\CYRSHCH,\CYRYU,\CYRZ,\CYRZH,\CYRG,\CYRH}
+% \DoNotIndex{\CYRCH, \CYRG, \CYRL, \CYRZH}
 % \DoNotIndex{\z@skip,\z@}
-% \DoNotIndex{\|,\~,\ }
-% \DoNotIndex{\\&,\',\(,\),\`,\\,\/,\.}
-% \DoNotIndex{\begin,\DeclareUTFcharacter}
-% \DoNotIndex{\csname,\def}
-% \DoNotIndex{\else,\endcsname,\end}
-% \DoNotIndex{\expandafter,\fi}
-% \DoNotIndex{\hbox,\hss}
-% \DoNotIndex{\iffalse,\ifx,\ignorespaces,\iflanguage}
-% \DoNotIndex{\language,\lastskip,\ldots,\let,\natexlab,\newblock,\nobreak}
-% \DoNotIndex{\providecommand,\ProvideTextCommandDefault,\relax,\renewcommand}
-% \DoNotIndex{\selectlanguage,\selectlanguageifdefined,\small,\textemdash}
-% \DoNotIndex{\or,\if,\fi,\unskip,\url,\UTFencname}
-% \DoNotIndex{\,,\catcode,\cite,\citeauthor,\citet,\citeyear,\href,\hskip,\ifdim}
+% \DoNotIndex{\|,\~,\ ,\,}
 %
+
 %\GetFileInfo{russianb.dtx}
 %\GetFileInfo{russianb.ldf}
 %
-%\title{^^A
-%  \textsf{Russian} --- description text\thanks{^^A
-%    This file describes version \fileversion, last revised \filedate.^^A
-%  }^^A
-%}
-%\author{^^A
-%  You\thanks{E-mail: you@your.domain}^^A
-%}
 % \title{The Russian Language\\
 %  in the \babel\ system\\[0.5em]
 %  \large Version \fileversion}
@@ -484,11 +468,11 @@ and the derived files             russianb.ins,
 % (\file{.tex}) file. Output encoding is also known as the font encoding. It is
 % implemented within the font files.
 %
-% Generally, the user may choose between different available Cyrillic
+% Generally, the user may choose between different Cyrillic
 % encodings. The current support for Cyrillic uses LH family of MetaFont fonts
 % and theirs Postscript versions such as CM-super. Lua\LaTeX\ and Xe\LaTeX,
 % being the Unicode-based succeeders of \LaTeX, allow also for any Open Type
-% (OTF) and True Type (TTF) fonts which has Cyrillic script, e.g. Computer
+% (OTF) and True Type (TTF) fonts which have Cyrillic script, e.g. Computer
 % Modern Unicode, Linux Libertine, and many other system fonts that came with
 % Linux, Mac and Windows operating systems.
 %
@@ -528,7 +512,7 @@ and the derived files             russianb.ins,
 % Output encodings (also known as font encodings) are declared as options to
 % the \pkg{fontenc} package. Known Cyrillic encodings are \texttt{T2A},
 % \texttt{T2B}, \texttt{T2C}, \texttt{LCY},  and \texttt{X2};
-% \texttt{LWN} is excluded from Russian support stating version 1.2 of
+% \texttt{LWN} is excluded from Russian support starting version 1.2 of
 % \file{\filename} since \texttt{LWN} is excluded from the \pkg{cyrillic}
 % bundle of related files.
 %
@@ -547,17 +531,17 @@ and the derived files             russianb.ins,
 %\usepackage[english,russian]{babel}
 %\end{verbatim}
 % The order of the packages is crucial for Lua\LaTeX\ in 8-bit mode. Since both
-% \pkg{luainputenc} and \pkg{babel} should know what is a selected font encoding,
-% the \pkg{fontenc} package should be loaded first. Input encoding management for
-% Lua\TeX\ is needed only for compatibility with old documents. For new
-% documents, using UTF-8 encoding and Unicode fonts is strongly recommended.
-% \emph{You've been warned!} See
+% \pkg{luainputenc} and \pkg{babel} should know what font encoding is selected,
+% the \pkg{fontenc} package should be loaded first. Legacy input encoding
+% management for Lua\TeX\ is needed only for compatibility with old documents.
+% For new documents, using UTF-8 encoding and Unicode fonts is strongly
+% recommended. \emph{You've been warned!} See
 % \href{http://tex.stackexchange.com/questions/31709/can-one-instruct-lualatex-to-use-t2a-encoded-fonts}%
 % {tex.stackexchange.com/questions/31709/can-one-instruct-lualatex-to-use-t2a-encoded-fonts}.
 %
 %
 % To invoke Unicode mode, one needs to load the \pkg{fontspec} package instead
-% of \pkg{luainputenc} and \pkg{fontspec} and explicitly indicate which True Type
+% of \pkg{luainputenc} and \pkg{fontenc} and explicitly indicate which True Type
 % or Open Type fonts should be used for romanic, sans-serif and monospaced types.
 % The following example shows how to load Computer Modern Unicode (CMU) fonts,
 % which is a part of all modern \LaTeX\ distributions:
@@ -580,8 +564,7 @@ and the derived files             russianb.ins,
 %    \setmonofont{CMU Typewriter Text}
 % \usepackage[english,russian]{babel}
 %\end{verbatim}
-% Here |Renderer=Basic,Ligatures={TeX}| activates ligatures which are existed
-% in \LaTeX.
+% Here |Renderer=Basic,Ligatures={TeX}| activates ligatures available in \LaTeX.
 %
 % Recall that the language enlisted last in the list of options of the \pkg{babel}
 % package is assumed to be the main language of the document, which is also active
@@ -599,7 +582,7 @@ and the derived files             russianb.ins,
 %
 % In Xe\LaTeX, there is also a special mode for 8-bit compatibility.
 % One can use |\XeTeXinputencoding| to change the input encoding
-% temporarily, and the \texttt{"bytes"} encoding makes Xe\LaTeX\ works
+% temporarily, and the \texttt{"bytes"} encoding makes Xe\LaTeX\ to work
 % like a 8-bit \LaTeX\ engine:
 % \begin{verbatim}
 % \XeTeXinputencoding "bytes"
@@ -610,7 +593,7 @@ and the derived files             russianb.ins,
 % \unskip
 % Xe\TeX\ can use a different input encoding but it always uses the Unicode
 % internally, so that |\XeTeXinputencoding| performs a conversion of the input
-% into Unicode;
+% stream into Unicode;
 % see \href{http://tex.stackexchange.com/questions/36188/do-xetex-and-luatex-always-use-unicode}
 % {tex.stackexchange.com/questions/36188/do-xetex-and-luatex-always-use-unicode}.
 %
@@ -675,8 +658,7 @@ and the derived files             russianb.ins,
 % \begin{enumerate}
 % \item Russian hyphenation patterns are made active;
 % \item |\today| prints the date in Russian;
-% \item the caption names are translated into Russian
-%      (\LaTeX{} only);
+% \item the caption names are translated into Russian;
 % \item emdash typed by the ligature |---| might be 20\% shorter when Russian
 % is the current language; the result depends on the current encoding; |---|
 % always produce long emdash in Lua\TeX\ and Xe\TeX\ since these engines
@@ -784,13 +766,12 @@ and the derived files             russianb.ins,
 %
 % The French quotes are also available as ligatures `|<<|' and `|>>|' in
 % 8-bit Cyrillic font encodings (\texttt{LCY}, \texttt{X2}, \texttt{T2*})
-% and in Unicode encodings (\texttt{EU1} and \texttt{EU2})
-% and as `|<|' and `|>|' characters in 7-bit Cyrillic font encodings
-% (\texttt{OT2} and \texttt{LWN}).
+% and in Unicode encoding (\texttt{TU}) as `|<|' and `|>|' characters in 7-bit
+% Cyrillic font encodings (\texttt{OT2} and \texttt{LWN}).
 %
-% In Unicode encodings \texttt{EU1} and \texttt{EU2} cyrdashes and quotes
-% can be typed as single character if text editor makes it possible to
-% insert characters which absent of standard keyboard. This method works
+% In Unicode encoding \texttt{TU} cyrdashes and quotes
+% can be typed as single character if your text editor allows
+% inserting characters which absent of standard keyboard. This method works
 % as well for 8-bit fonts encoded according to \texttt{T2A} if source file
 % is encoded with \texttt{cp1251} or {utf8}.
 %
@@ -864,141 +845,35 @@ and the derived files             russianb.ins,
 %\end{verbatim}
 %
 %    None of Cyrillic font encoding has `iotated E' (Ѥ, ѥ). When running legacy
-%    engines you are advices to substitute it with |\CYRIE|, |\cyrie| (Є, є):
+%    engines you are advised to substitute it with |\CYRIE|, |\cyrie| (Є, є):
 %
 %\begin{verbatim}
 %\DeclareUnicodeCharacter{0464}{\CYRIE}
 %\DeclareUnicodeCharacter{0465}{\cyrie}
 %\end{verbatim}
 %
-%    \cs{cyrdash} might produce dashes of different width in same document after
-%    switching to/from Russian language if the document is compiled with legacy
-%    engines.
+%    The dash might change its length after switching the current language
+%    with |\selectlanguage|. Legacy engines (\texttt{latex.exe},
+%    \texttt{pdflatex.exe}) take the dash symbol (---) from same code
+%    point 22 of a font file but from different fonts for Cyrillic and Latin
+%    languages. Cyrillic fonts take care that Cyrillic dash is 20\% shorter than
+%    Latin one. Unicode engines (\texttt{xelatex.exe}, \texttt{lualatex.exe})
+%    take the dash from the code point x2022, but may substitute the font dash
+%    with fake symbol which is shorter. See discussion at
+%    \href{https://tex.stackexchange.com/questions/294178/what-about-cyrdash-in-eu1-and-eu2-encodings}
+%    {https://tex.stackexchange.com/questions/294178/what-about-cyrdash-in-eu1-and-eu2-encodings}.
 %
-% \section{History}
 %
-% \subsection*{Changes in version 1.3j}
-% \begin{itemize}
-% \item
-% Bug fixed in |\NOD|, |\NOK| and similar log-functions (thanks to Vladimir Vlasov).
-% \end{itemize}
-%
-% \subsection*{Changes in version 1.3h}
-% \begin{itemize}
-% \item
-% \cs{cyrdash} is now faked via \cs{ProvideTextCommandDefault} rather than
-% \cs{def}.
-% \item
-% Bugs fixed in captions for \cls{revtex4.cls} and \cls{revtex4-1.cls}.
-% \end{itemize}
-%
-% \subsection*{Changes in version 1.3g}
-% \begin{itemize}
-% \item
-% Added support for \cls{revtex4} and \cls{revtex4-1} classes.
-% \end{itemize}
-%
-% \subsection*{Changes in version 1.3f}
-% \begin{itemize}
-% \item
-%  A documentation file russianb.pdf can now be generated by
-%  running \file{pdflatex.exe} over \file{russianb.dtx} although
-%  \file{xelatex.exe} is still recommended.
-% \item
-% \file{russianb.ins} was missed in version 1.3e.
-% \end{itemize}
-%
-% \subsection*{Changes in version 1.3e}
-% \begin{itemize}
-% \item
-%  All stuff is now generated from single \file{dtx} file.
-% \end{itemize}
-%
-% \subsection*{Changes in version 1.3d}
-% \begin{itemize}
-% \item
-%  Bug fix in |\Proj|.
-% \end{itemize}
-%
-% \subsection*{Changes in version 1.3c}
-% \begin{itemize}
-% \item
-%  Bug fix in |\daterussian|.
-% \end{itemize}
-%
-% \subsection*{Changes in version 1.3b}
-% \begin{itemize}
-% \item
-%  Added support for the packages \pkg{listing}, \pkg{nomencl}, and
-%  \pkg{nomentbl}.
-% \end{itemize}
-%
-% \subsection*{Changes in version 1.3a}
-% \begin{itemize}
-% \item
-%  ^^AAdded the Russian language attributes \Lopt{modern} (default) and
-%  ^^A\Lopt{ancient} (for typesetting ancient slavonic books).
-%  Added the Russian language attribute \Lopt{ancient} for typesetting
-%  ancient slavonic books.
-%\end{itemize}
-%
-% \subsection*{Changes in version 1.3}
-% \begin{itemize}
-% \item
-%  Updated for babel 3.9.
-% \item
-%  The |\alph| and |\Alph| commands are not redefined any more by the
-%  \file{russianb.ldf}.
-% \end{itemize}
-%
-% \subsection*{Changes in version 1.2a}
-% \begin{itemize}
-% \item
-%  Indentation of the first paragraph after sectioning command has been removed.
-%  Use \pkg{indentfirst} to make first paragraph indented.
-% \end{itemize}
-%
-% \subsection*{Changes in version 1.2}
-%
-% \begin{itemize}
-% \item
-%  Font encoding \texttt{LWN} is not supported any more.
-% \item
-%  Macros |\Rus|, |\English|, |\Eng| have been removed.
-%  |\Russian| is now alias of |\selectlanguage{russian}|.
-%  Former definition of |\Russian| is preserved in the macros
-%  |\cyrillictext| and |\cyr| which should not be used at user
-%  level.
-% \item
-%  Lua\LaTeX\ and Xe\LaTeX\ are now supported;
-%  |\cyr...| commands are bypassed if Lua\LaTeX\ or Xe\LaTeX\ run.
-%^^A\item
-%^^A  First paragraph after section command is indented over the entire
-%^^A  document if \Lopt{russian} is the last option of \pkg{babel} and,
-%^^A  hence, Russian is the main language.
-% \item
-%  The shorthands |"<| and |">| are redefined; now they match
-%  |\guillemotleft| and |\guillemotright|, respectively, rather than
-%  |\flqq| and |\frqq|.
-% \item
-%  Definitions of |\latinencoding| and  |\latintext| are removed
-%  since these macros are defined in \file{babel.def}.
-% \item
-%  |\cyrmathbf|, |\cyrmathsf|, |\cyrmathit|, and |\cyrmathtt| commands
-%  are removed; they do work in math mode; instead of them it is advised to use corresponding
-%  |\text..| command.
-% \item
-%  The macro |\No| is removed since the Cyrillic number sign is available
-%  on keyboard and can also be typed using the |\textnumero| macro.
-% \item
-%  Added translation for Glossary.
-% \end{itemize}
-%
-%\StopEventually{^^A
-%  \setlength{\postmulticols}{100pt} ^^A %%% 20pt by default ***
-%  \PrintChanges
-%  \PrintIndex
-%}
+% \StopEventually{
+%   \IndexPrologue{\section{Index}
+%       Numbers written in dark blue refer to the page where the corresponding
+%       entry is described; numbers in black roman refer to the code lines where
+%       the entry is used.
+%   }
+%   \GlossaryPrologue{\section{Change History}}
+%   \PrintChanges
+%   \PrintIndex
+% }
 %
 %\iffalse
 %<*code>
@@ -1007,26 +882,26 @@ and the derived files             russianb.ins,
 %
 %    \section{Implementation}
 %
-% \changes{1.3h}{2016 Feb 18}{\cs{cyrdash} is redefined}
-% \changes{1.3h}{2016 Feb 18}{Bugs fixed in captions for revtex4 and revtex4-1}
-% \changes{1.3g}{2015 May 01}{Added support for revtex4 and revtex4-1 classes}
-% \changes{1.3f}{2014 Oct 21}{Update documentation for generating by pdflatex.exe}
-% \changes{1.3e}{2014 Oct 14}{Update documentation}
-% \changes{1.3d}{2014 Oct 02}{Fix bug in \cs{Proj}}
-% \changes{1.3c}{2014 Jun 02}{Fix bug in \cs{daterussian}}
-% \changes{1.3b}{2013 Apr 06}{Renamed to russianb to work with babel 3.9}
-% \changes{1.2b}{2013 Jan 08}{Renamed to russianu to work with babel-beta 3.9}
-% \changes{1.2a}{2012 Jun 06}{Indentation of 1st paragraph removed}
-% \changes{1.1c}{1996 Jul 11}{Replaced \cs{undefined} with
+% \changes{1.3h}{2016/02/18}{\cs{cyrdash} is redefined}
+% \changes{1.3h}{2016/02/18}{Bugs fixed in captions for revtex4 and revtex4-1}
+% \changes{1.3g}{2015/05/01}{Added support for revtex4 and revtex4-1 classes}
+% \changes{1.3f}{2014/10/21}{Update documentation for generating by pdflatex.exe}
+% \changes{1.3e}{2014/10/14}{Update documentation}
+% \changes{1.3d}{2014/10/02}{Fix bug in \cs{Proj}}
+% \changes{1.3c}{2014/06/02}{Fix bug in \cs{daterussian}}
+% \changes{1.3b}{2013/04/06}{Renamed to russianb to work with babel 3.9}
+% \changes{1.2b}{2013/01/08}{Renamed to russianu to work with babel-beta 3.9}
+% \changes{1.2a}{2012/06/06}{Indentation of 1st paragraph removed}
+% \changes{1.1c}{1996/07/11}{Replaced \cs{undefined} with
 %    \cs{@undefined} and \cs{empty} with \cs{@empty} for consistency
 %    with \LaTeX}
-% \changes{1.1d}{1996 Oct 10}{Moved the definition of
+% \changes{1.1d}{1996/10/10}{Moved the definition of
 %    \cs{atcatcode} right to the beginning.}
 % \changes{1.1k}{1999/08/19}{replaced all \cs{penalty}\cs{@M}
 %    with \cs{nobreak}}
-% \changes{1.1f}{1998 Jun 26}{%
+% \changes{1.1f}{1998/06/26}{%
 %    Added definitions of Cyrillic emdash stuff and thinspace}
-% \changes{1.1f}{1998 Jun 26}{%
+% \changes{1.1f}{1998/06/26}{%
 %    Added definitions of Cyrillic emdash stuff and thinspace}
 %
 %
@@ -1042,6 +917,8 @@ and the derived files             russianb.ins,
 % \changes{1.1e}{1996/12/29}{Added closing brace to second
 %    argument of \cs{LdfInit}}
 %    \begin{macrocode}
+\ProvidesLanguage{russian}
+    [2017/08/12 1.3j Russian support for the Babel system]
 \LdfInit{russian}{captionsrussian}
 %    \end{macrocode}
 %
@@ -1058,7 +935,7 @@ and the derived files             russianb.ins,
 %    (note that babel loads this file right when it processes its own options)
 %    but we borrow code from these packages.
 %
-% \changes{1.2}{2011 Oct 20}{Check for LuaTeX}
+% \changes{1.2}{2011/10/20}{Check for LuaTeX}
 %    \begin{macrocode}
 \ifdefined\if@uni@ode
   \PackageError{babel}{if@uni@ode already defined.\MessageBreak
@@ -1093,11 +970,11 @@ and the derived files             russianb.ins,
 %    \pkg{babel}. In the latter case or if these packages are not loaded at all,
 %    \file{russianb.ldf} ignores their effect and tries to provide some
 %    reasonable settings. In particular, \texttt{T2A} will be selected for
-%    Russian language if \LaTeX\ is running but \texttt{EU1} in case of
-%    Xe\LaTeX\ and \texttt{EU2} in case of Lua\LaTeX.
+%    Russian language if \LaTeX\ is running but \texttt{TU} in case of
+%    Xe\LaTeX\ or Lua\LaTeX.
 %
 %  \begin{macro}{\latinencoding}
-% \changes{1.2}{2011 Oct 20}{Removed \cs{latinencoding}}
+% \changes{1.2}{2011/10/20}{Removed \cs{latinencoding}}
 %
 %    The macro |\latinencoding| keeps the name of Latin encoding. It is
 %    defined in \file{babel.def} and is wrapped into |\AtBeginDocument| to allow
@@ -1123,13 +1000,12 @@ and the derived files             russianb.ins,
 %    |\latinencoding| will be \texttt{OT1}.
 %
 %    In Unicode mode, the package \pkg{fontspec} should be loaded instead of
-%    \pkg{fontenc} to make font preparation; \pkg{fontspec} loads the package
-%    \pkg{xunicode} which sets current encoding (kept in |\cf@encoding|) to
-%    \texttt{EU1} for Xe\LaTeX\ and \texttt{EU2} for Lua\LaTeX, and the \pkg{babel}
-%    package sets the macro |\latinencoding| to |\cf@encoding|. Since \pkg{babel} scan
-%    for value |\cf@encoding| within |\AtBeginDocument|, |\latinencoding| will
-%    be set to either \texttt{EU1} for Xe\LaTeX\ or \texttt{EU2} for Lua\LaTeX\
-%    no matter which of the packages, \pkg{babel} or \pkg{fontspec} is loaded first.
+%    \pkg{fontenc} to make font preparation; \pkg{fontspec} sets current encoding
+%    (kept in |\cf@encoding|) to \texttt{TU}, and the \pkg{babel} package sets the
+%    macro |\latinencoding| to |\cf@encoding|. Since \pkg{babel} scan for value
+%    |\cf@encoding| within |\AtBeginDocument|, |\latinencoding| will
+%    be set to \texttt{TU} for Xe\LaTeX\ or Lua\LaTeX\ no matter which of the
+%    packages, \pkg{babel} or \pkg{fontspec} is loaded first.
 %
 %  \end{macro}
 %
@@ -1143,8 +1019,9 @@ and the derived files             russianb.ins,
 %    \texttt{T2A} (default for 8-bit compilers), \texttt{T2B}, \texttt{T2C},
 %    \texttt{LCY} and \texttt{X2}.
 %    Correct utf8 encodings are
-%    \texttt{EU1} (default for Xe\LaTeX),
-%    \texttt{EU2} (default for Lua\LaTeX).
+%    \texttt{TU}  (default for Xe\LaTeX\ and Lua\LaTeX),
+%    \texttt{EU1} (obsolete, formerly used for Xe\LaTeX),
+%    \texttt{EU2} (obsolete, formerly used for Lua\LaTeX).
 %
 %    In 8-bit (\LaTeX) mode, user may choose between different non-unicode Cyrillic
 %    encodings---e.g., \texttt{X2} or \texttt{LCY}.\@ If user wants
@@ -1157,17 +1034,18 @@ and the derived files             russianb.ins,
 %    every time they want to typeset a Latin word inside a Russian phrase
 %    or vice versa.
 %
-%
 %    We parse the |\cdp@list| containing encodings known to \LaTeX\
-%    in the order they were loaded by the time when \pkg{babel} is loaded.
+%    in the order they have been loaded by the time \pkg{babel} is called.
 %    We set the |\cyrillicencoding| to the \emph{last} loaded encoding in the
 %    list of supported Cyrillic encodings: \texttt{OT2}, \texttt{LCY},
-%    \texttt{X2}, \texttt{T2C}, \texttt{T2B}, \texttt{T2A}. In Unicode mode
-%    we also try the Unicode encodings \texttt{EU1} and \texttt{EU2}; 8-bit
-%    encodings are kept for Unicode compilers (Lua\LaTeX\ and Xe\LaTeX) since
-%    they can run in compatibility (8-bit) mode.
+%    \texttt{X2}, \texttt{T2C}, \texttt{T2B}, \texttt{T2A}. In Unicode mode,
+%    |\cyrillicencoding| is set to \texttt{TU} by \pkg{fontspec}. Nevertheless
+%    here we provide similar definitions; 8-bit encodings are kept for Unicode
+%    compilers (Lua\LaTeX\ and Xe\LaTeX) since they can run in compatibility
+%    (8-bit) mode.
 %
-% \changes{1.2}{2011 Oct 20}{EU1 and EU2  encodings added}
+% \changes{1.2}{2011/10/20}{EU1 and EU2  encodings added}
+% \changes{1.3j}{2017/08/07}{TU encoding added}
 %    \begin{macrocode}
 \def\@setcyrillicencoding{%
   \def\sce@a##1##2{%
@@ -1184,12 +1062,15 @@ and the derived files             russianb.ins,
     \sce@a{##1}{T2B}%
     \sce@a{##1}{T2A}%
     \if@uni@ode
-      \sce@a{##1}{EU1}%
-      \sce@a{##1}{EU2}%
+      %\sce@a{##1}{EU1}%
+      %\sce@a{##1}{EU2}%
+      \sce@a{##1}{TU}%
     \fi}%
   \cdp@list
 }
-\@setcyrillicencoding
+\ifx\cyrillicencoding\undefined
+  \@setcyrillicencoding
+\fi
 \@onlypreamble\@setcyrillicencoding
 \@onlypreamble\sce@a
 \@onlypreamble\sce@b
@@ -1204,17 +1085,17 @@ and the derived files             russianb.ins,
 %    encoding definitions; we use the lowercase names (i.e.,
 %    \texttt{lcyenc.def} instead of \texttt{LCYenc.def}) when we do that.
 %
-% \changes{1.2}{2011 Oct 20}{Removed test for present of
+% \changes{1.2}{2011/10/20}{Removed test for present of
 %    encoding files}
 %    \begin{macrocode}
-\ifdefined\cyrillicencoding
-\else
+\ifx\cyrillicencoding\undefined
   \if@uni@ode
-    \ifdefined\XeTeXrevision
-      \edef\cyrillicencoding{EU1}
-    \else\ifdefined\luatexversion
-      \edef\cyrillicencoding{EU2}
-    \fi\fi
+    %\ifdefined\XeTeXrevision
+    %  \edef\cyrillicencoding{EU1}
+    %\else\ifdefined\luatexversion
+    %  \edef\cyrillicencoding{EU2}
+    %\fi\fi
+    \edef\cyrillicencoding{TU}
   \else
     \edef\cyrillicencoding{T2A}
   \fi
@@ -1225,7 +1106,7 @@ and the derived files             russianb.ins,
     }%
   \lowercase\expandafter{\expandafter\input\cyrillicencoding enc.def\relax}%
 %    \end{macrocode}
-%    As final wisdom, we repeat |\@setcyrillicencoding| at |\begin{document}|
+%    As a final wisdom, we repeat |\@setcyrillicencoding| at |\begin{document}|
 %    time. We could not avoid previous call to |\@setcyrillicencoding| since
 %    compiler scan \file{.aux} file before it executes delayed code, and
 %    \file{.aux} may contain |\set@langauge{russian}|; the latter rises an
@@ -1236,15 +1117,19 @@ and the derived files             russianb.ins,
 %    \end{macrocode}
 %
 %  \Describe\Russian{}
-%  \DescribeOther\cyr{}
-%  \DescribeOther\cyrillictext{}
 %    For the sake of backward compatibility we keep the macro |\Russian|
 %    but redefine its meaning; now  |\Russian| is simply an alias for
 %    |\selectlanguage{russian}|.
+%    \begin{macrocode}
+\DeclareRobustCommand{\Russian}{\selectlanguage{\russian}}
+%    \end{macrocode}
 %
+%  \Describe\cyrillictext{}
+%  \DescribeOther\cyr{}
 %    We define |\cyrillictext| and its alias |\cyr| but remove another alias
 %    |\Rus|; these macros are intended for use within \texttt{babel} macros and
 %    do not perform complete switch of the language.
+%
 %    In particular, they to do no switch captions and the name of current
 %    language stored in the macro |\languagename|. This inconsistency might
 %    break some assumptions embedded into \pkg{babel}'s.
@@ -1267,7 +1152,6 @@ and the derived files             russianb.ins,
 %    switch caption names, dates and shorthands.
 %
 %    \begin{macrocode}
-\DeclareRobustCommand{\Russian}{\selectlanguage{\russian}}
 \DeclareRobustCommand{\cyrillictext}{%
   \fontencoding\cyrillicencoding\selectfont
   \let\encodingdefault\cyrillicencoding
@@ -1276,14 +1160,12 @@ and the derived files             russianb.ins,
 \let\cyr\cyrillictext
 %    \end{macrocode}
 %
-%    Starting from version v.1.2 we remove the |\English| macro and its
-%    aliases. We believe that reasonable place for defining these macros
-%    would be \file{englishb.ldf}.
-%    Note also that the macro |\English| and its  alias |\Eng| are absent
-%    in \file{russianb.ldf}'s counterpart in the package \pkg{polyglossia},
-%    analog of \pkg{babel} for Xe\LaTeX.
+%    Since version v.1.2, the |\English| macro and its alias |\Eng| were removed
+%    as a reasonable place for defining these macros would be \file{englishb.ldf}.
+%    Note also that these macros are absent from \file{russianb.ldf}'s counterpart
+%    of the package \pkg{polyglossia}, analog of \pkg{babel} for Xe\LaTeX.
 %
-% \changes{1.2}{2011 Oct 20}{Removed \cs{English} macro}
+% \changes{1.2}{2011/10/20}{Removed \cs{English} and \cs{Eng} macros}
 %    \begin{macrocode}
 %%\DeclareRobustCommand{\English}{%
 %%  \fontencoding\latinencoding\selectfont
@@ -1292,99 +1174,94 @@ and the derived files             russianb.ins,
 %%  \language\l@english}%
 %%\let\Eng\English
 %    \end{macrocode}
-%
-%    \textsc{Next part of code should be moved to \texttt{X2enc.def},
-%    \texttt{X2enc.dfu}, if needed.}
-%    Since the \texttt{X2} encoding does not contain Latin letters, we
-%    should make some redefinitions of \LaTeX\ macros which implicitly
-%    produce Latin letters.
-%
-%    Unfortunately, the commands |\AA| and |\aa| are not encoding dependent
-%    in \LaTeX\ (unlike e.g., |\oe| or |\DH|). They are defined as |\r{A}| and
-%    |\r{a}|. This leads to unpredictable results when the font encoding
-%    does not contain the Latin letters `A' and `a' (like \texttt{X2}).
-%
-%    \begin{macrocode}
-\expandafter\ifx\csname T@X2\endcsname\relax\else
-  \DeclareTextSymbolDefault{\AA}{OT1}
-  \DeclareTextSymbolDefault{\aa}{OT1}
-  \DeclareTextCommand{\aa}{OT1}{\r a}
-  \DeclareTextCommand{\AA}{OT1}{\r A}
-\fi
-%    \end{macrocode}
-%
-%
 %   The macro |\cyrillictext| switches current (e.g., Latin) font encoding
 %   to a Cyrillic font encoding stored in |\cyrillicencoding|. The macro
-%   |\latintext| switches back. This method assumes that an font
-%   encoding is a Latin one. But in fact the latter assumption does not matter
+%   |\latintext| switches back. This method assumes that main font
+%   encoding is a Latin one. But, in fact, the latter assumption does not matter
 %   if any other language is switched on using same method, i.e.
 %   if corresponding \file{.ldf} file defines required macros to switch that
 %   language on from same standard (Latin) state.
 %   Since |\latintext| is defined by the core of babel we do not repeat its
 %   definition here.
 %
-% \changes{1.1o}{2003 Oct 12}{\cs{latintext} is already
+% \changes{1.1o}{2003/10/12}{\cs{latintext} is already
 %    defined by the core of babel}
-% \changes{1.2}{2011 Oct 20}{\cs{lat} removed}
+% \changes{1.2}{2011/10/20}{\cs{lat} removed}
 %    \begin{macrocode}
-%\DeclareRobustCommand{\latintext}{%
-%  \fontencoding{\latinencoding}\selectfont
-%  \def\encodingdefault{\latinencoding}}
-%\let\lat\latintext
+%%\DeclareRobustCommand{\latintext}{%
+%%  \fontencoding{\latinencoding}\selectfont
+%%  \def\encodingdefault{\latinencoding}}
+%%\let\lat\latintext
 %    \end{macrocode}
 %
 %  \Describe\textcyrillic{\marg{text}}
-%    The macros |\cyrillictext|  and |\latintext| are declarations.
-%    For shorter chunks of text the commands |\textcyrillic| and |\textlatin|
-%    can be used.
-%
 %    The macro |\textcyrillic| takes an argument which is then typeset using the
-%    requested font encoding. It is thus an equivalent or
-%    |\foreignlangauge{russian}|.
-% \changes{1.1o}{2003 Oct 12}{\cs{textlatin} already defined
+%    |\cyrillictext| declaration.
+% \changes{1.1o}{2003/10/12}{\cs{textlatin} already defined
 %    by the core of babel}
 %    \begin{macrocode}
 \DeclareTextFontCommand{\textcyrillic}{\cyrillictext}
 %    \end{macrocode}
 %
 %
+%    \textsc{Next chunk of code should be moved to \texttt{X2enc.def},
+%    \texttt{X2enc.dfu}, if needed.}
+%
+%    Since the \texttt{X2} encoding does not contain Latin letters, we
+%    should make some redefinitions of \LaTeX\ macros which implicitly
+%    produce Latin letters.  Unfortunately, the commands |\AA| and |\aa| are not
+%    encoding dependent in \LaTeX\ (unlike e.g., |\oe| or |\DH|). They are defined
+%    as |\r{A}| and |\r{a}|. This leads to unpredictable results when the font
+%    encoding does not contain the Latin letters `A' and `a' (like \texttt{X2}).
+%    \begin{macrocode}
+%%\expandafter\ifx\csname T@X2\endcsname\relax\else
+%%  \DeclareTextSymbolDefault{\AA}{OT1}
+%%  \DeclareTextSymbolDefault{\aa}{OT1}
+%%  \DeclareTextCommand{\aa}{OT1}{\r a}
+%%  \DeclareTextCommand{\AA}{OT1}{\r A}
+%%\fi
+%    \end{macrocode}
+%
+%
 %    \subsection{Input encoding}
 %
-%    User should use the \pkg{inputenc} package when any 8-bit Cyrillic
-%    font encoding is used, selecting one of the Cyrillic input encodings.
-%    We do not assume any default input encoding, so
-%    the \pkg{inputenc} package should be  explicitly called by
-%    |\usepackage{inputenc}| \emph{before} \pkg{babel}.
-%    Note however that default font encoding \texttt{T2A} fits
-%    well enough to Russian version of Windows ANSI encoding which is almost
-%    equivalent to \texttt{cp1251}.
+%    We do not assume any default input encoding of the source file,
+%    so the \pkg{inputenc} package should be explicitly loaded by
+%    |\usepackage[...]{inputenc}| \emph{before} \pkg{babel}.
+%    Note that default font encoding \texttt{T2A} for legacy 8-bit latex
+%    engines fits well enough to Russian version of Windows ANSI encoding which
+%    is almost equivalent to \texttt{cp1251} input encoding.
 %
-%    \textsc{Should we wrap this chunk into At Begin document?}
+%    \textsc{Should we wrap this chunk into AtBeginDocument? Note also that
+%    \pkg{inputenc} has its own check whether it is correctly called. Also,
+%    it is difficult to imagine that TU encoding is not declared in case of
+%    unicode engines. Hence, we remove this check in babel starting since
+%    version 1.3j.}
 %
 % \changes{1.1l}{1999/08/27}{Made not using inputenc a
 %    warning instead of an error}
-% \changes{1.2}{2011 Oct 11}{Added EU1 and EU2 encodings}
-% \changes{1.2}{2011 Oct 11}{Removed LWN encoding}
+% \changes{1.2}{2011/10/11}{Added EU1 and EU2 encodings}
+% \changes{1.2}{2011/10/11}{Removed LWN encoding}
+% \changes{1.3j}{2017/08/08}{Removed check if inputenc is loaded}
 %    \begin{macrocode}
-\@ifpackageloaded{inputenc}{%
- \if@uni@ode
-   \PackageWarning{babel}{inputenc should not be used with LuaTeX or XeTeX}
- \fi
-}{%
-  %\def\reserved@a{LWN}%
-  %\ifx\reserved@a\cyrillicencoding\else
-    \def\reserved@a{OT2}%
-    \ifx\reserved@a\cyrillicencoding\else
-       \def\reserved@a{EU1}%
-       \ifx\reserved@a\cyrillicencoding\else
-          \def\reserved@a{EU2}%
-          \ifx\reserved@a\cyrillicencoding\else
-             \PackageWarning{babel}%
-                {No input encoding specified for Russian language}
-    \fi\fi\fi
-  %\fi
-}
+%%\@ifpackageloaded{inputenc}{%
+%%% \if@uni@ode
+%%%   \PackageWarning{babel}{inputenc should not be used with LuaTeX or XeTeX}
+%%% \fi
+%% \ifdefined\luatexversion
+%%   \PackageWarning{babel}{inputenc should not be used with LuaTeX}
+%% \fi}{%
+%%  %\def\reserved@a{LWN}%
+%%  %\ifx\reserved@a\cyrillicencoding\else
+%%    \def\reserved@a{OT2}%
+%%    \ifx\reserved@a\cyrillicencoding\else
+%%       \def\reserved@a{TU}%
+%%       \ifx\reserved@a\cyrillicencoding\else
+%%         \PackageWarning{babel}%
+%%           {No input encoding specified for Russian language}
+%%    \fi\fi
+%%  %\fi
+%%}
 %    \end{macrocode}
 %
 %
@@ -1399,9 +1276,9 @@ and the derived files             russianb.ins,
 \initiate@active@char{"}
 %    \end{macrocode}
 %
-% \changes{1.1f}{1998 Jun 26}{Added switch for
+% \changes{1.1f}{1998/06/26}{Added switch for
 %    doublequote shorthands}
-% \changes{1.3}{2013 Jan 10}{Removed switch for
+% \changes{1.3}{2013/01/10}{Removed switch for
 %    doublequote shorthands}
 %
 %  \begin{macro}{\mdqon}
@@ -1409,10 +1286,10 @@ and the derived files             russianb.ins,
 %    Obsolete: Active double quote can be both activated and deactivated at any time
 %    using the macros |\mdqon| and  |\mdqoff|.
 %    \begin{macrocode}
-%\def\mdqon{\bbl@activate{"}}
-%\def\mdqoff{\bbl@deactivate{"}}
+%%\def\mdqon{\bbl@activate{"}}
+%%\def\mdqoff{\bbl@deactivate{"}}
 %    \end{macrocode}
-%    Initial activation state will set to on later in section \ref{sss:extra}.
+%    Initial activation state is set in section \ref{sss:extra}.
 %  \end{macro}
 %  \end{macro}
 %
@@ -1434,18 +1311,18 @@ and the derived files             russianb.ins,
 %
 %    We set |"`| and |"'| as shorthands for |\quotedblbase| and
 %    |\textquotedblleft|, respectively. Prior to ver.1.2, these shorthands
-%    were defined through german quotes |\glqq| and |\grqq|, which in their turn
+%    were defined through German quotes |\glqq| and |\grqq|, which in their turn
 %    are defined in \pkg{babel.def} via |\quotedblbase| and |\textquotedblleft|,
 %    respectively. It occurred, that old definition caused errors in Unicode
 %    mode if \pkg{fontspec} is loaded.
 %
-%    Prior to version 1.2, the shorthands |"<| and |">| were
+%    Prior to version 1.2, the shorthands |"<| and |">| had been
 %    declared to be equivalents for the French quotes |\flqq| and |\frqq|,
 %    respectively. They are defined in \pkg{babel.def} via |\guillemotleft| and
-%    |\guillemotrigh|. However, |\flqq| and |\guillemotleft| (and their right
+%    |\guillemotright|. However, |\flqq| and |\guillemotleft| (and their right
 %    counterparts) are typeset differently if current encoding is not
 %    \texttt{T1}. Therefore, since v.1.2, we define |"<| and |">|  directly
-%    through |\guillemotleft| and |\guillemotrigh|.
+%    through |\guillemotleft| and |\guillemotright|.
 %
 %    \begin{macrocode}
 \declare@shorthand{russian}{"`}{\quotedblbase}
@@ -1468,12 +1345,11 @@ and the derived files             russianb.ins,
 %
 %    \subsubsection{Emdash, endash and hyphenation sign}
 %
-%    To distinguish between |"-| and |"---| we must check whether the next
-%    after |-| token is a hyphen character.
+%    To distinguish between |"-| and |"---| we must check whether the next token
+%    after |-| is a hyphen character.
 %    If it is, we output an emdash, otherwise a hyphen sign. Therefor
 %    \TeX\ looks for the next token after the first `|-|', writes
 %    its meaning to |\russian@sh@next| and finally call for |\russian@sh@tmp|.
-%
 %    \begin{macrocode}
 \declare@shorthand{russian}{"-}{%
   \def\russian@sh@tmp{%
@@ -1529,29 +1405,7 @@ and the derived files             russianb.ins,
  \nobreak\cyrdash\nobreak\hskip.35em\ignorespaces}%
 %    \end{macrocode}
 %
-%  \Describe\cyrdash{}
-%   The |\cyrdash| can be defined in a fontenc file as it is done for
-%   the \texttt{T2*} encodings. We provide fake definition of |\cyrdash| only if
-%   it is not defined there.
-%
-%   Cyrillic \texttt{T2*} fonts contains shorter (Cyrillic) emdash. It can be
-%   typeset also via the ligature |---|. So, if |\laticencoding| differs from
-%   \texttt{T2*} switching of languages also changes the emdash length typed as
-%   ligature in the source file.
-%
-% \changes{1.2}{2011 Oct 20}{Warning is added if \cs{cyrdash} defined}
-% \changes{1.3h}{2016 Feb 18}{\cs{cyrdash} is redefined}
-% |\textthreequartersemdash|=!\textthreequartersemdash!
-%    \begin{macrocode}
-%\ifx\cyrdash\undefined
-%  \def\cyrdash{\hbox to.8em{--\hss--}}
-%  \PackageInfo{babel}{\string\cyrdash\space is defined}
-%\fi
-\ProvideTextCommandDefault{\cyrdash}{\iflanguage{russian}%
-    {\hbox to.8em{--\hss--}}{\textemdash}}
-%    \end{macrocode}
-%
-% \changes{1.1f}{1998 Jun 26}{%
+% \changes{1.1f}{1998/06/26}{%
 %    Add macro for thin space between initials}
 %
 %    Finally, we define a shorthand thin space to be placed between initials
@@ -1563,7 +1417,35 @@ and the derived files             russianb.ins,
 %    \end{macrocode}
 %
 %
-%   \subsection{Switching to and from Russian}
+%  \Describe\cyrdash{}
+%    The |\cyrdash| macro is defined in Cyrillic font encodings (LCY, T2*, OT2,
+%    and |X2|) by means of |\DeclareTextSymbol|. In T2* encodings |\cyrdash|
+%    refers to same code point 22 as |\textemdash| does so that these two macros
+%    are equivalent. However the dash at the code point 22 have different length
+%    in different fonts. The dash in Cyrillic fonts LH is 20\% shorter as
+%    compared to Latin fonts such as CM (Computer Modern).  As a result, the dash
+%    typed by the ligature |---| or its variations mentioned in Table
+%    \ref{tab:russian-quote} might change its length after |\selectlanguage|.
+%
+%    The |\cyrdash| macro is not available in Latin encodings such as T1. Therefor
+%    an explicit or implicit call for |\cyrdash| when current language is English
+%    causes an error. For such a case, we provide a fake default. A standard check
+%    such as |\ifx\cyrdash\undefined ...\fi| fails to detect absent definitions
+%    for Latin  encodings since the |\cyrdash| macro is in fact defined. Therefor
+%    we use the |\ProvideTextCommandDefault| method:
+% \changes{1.3j}{2017/08/08}{Default for \cs{cyrdash} is provided}
+%    \begin{macrocode}
+\PackageInfo{babel}{Default for \string\cyrdash\space is provided}
+%%\ProvideTextCommandDefault{\cyrdash}{\iflanguage{russian}%
+%%  {\hbox to.8em{--\hss--}}{\textemdash}}
+\ProvideTextCommandDefault{\cyrdash}{\hbox to.8em{--\hss--}}
+%    \end{macrocode}%
+%
+%    The |\cyrdash| macro is not defined in the Unicode encoding TU. The fake
+%    definition given above cope with this case.
+%    
+%
+%   \subsection{Switching to/from Russian}
 %
 %   Now we define additional macros used to reset current language to
 %   Russian and back
@@ -1591,7 +1473,7 @@ and the derived files             russianb.ins,
 %    since it causes error at compilation time in case if \LaTeX\ is running
 %    and \texttt{utf8} input encoding is not declared.
 %
-% \changes{1.2}{2011 Oct 20}{Unicode code-points added for LuaLaTeX}
+% \changes{1.2}{2011/10/20}{Unicode code-points added for LuaLaTeX}
 %    \begin{macrocode}
 \if@uni@ode
   %\captionsrussian@modern
@@ -1674,7 +1556,7 @@ and the derived files             russianb.ins,
   \fi
 %    \end{macrocode}
 %
-% \changes{1.3h}{2016 Feb 18}{Revtex captions fixed}
+% \changes{1.3h}{2016/02/18}{Revtex captions fixed}
 %    Now we proceed to the ancient version in Unicode encoding.
 %    \begin{macrocode}
   \addto\captionsrussian@ancient{%
@@ -1890,7 +1772,7 @@ and the derived files             russianb.ins,
 % \Describe\daterussian{}
 %    The macro |\daterussian| is used to reset the macro |\today| in Russian.
 %
-% \changes{1.2}{2011 Oct 20}{Unicode code-points added for LuaLaTeX}
+% \changes{1.2}{2011/10/20}{Unicode code-points added for LuaLaTeX}
 %    \begin{macrocode}
 \if@uni@ode
   \addto\daterussian{%
@@ -1967,11 +1849,11 @@ and the derived files             russianb.ins,
 %    As of v.1.2 we removed a definition for |\englishhyphenmins|. It is
 %    not deal of \file{russianb.ldf}.
 %
-% \changes{1.1a}{1995 Jul 04}{use \cs{russianhyphenmins} to
+% \changes{1.1a}{1995/07/04}{use \cs{russianhyphenmins} to
 %    store the correct values}
 % \changes{1.1m}{2000/09/22}{Now use \cs{providehyphenmins} to
 %    provide a default value}
-% \changes{1.2}{2011 Oct 20}{\cs{englishhyphenmins} is removed}
+% \changes{1.2}{2011/10/20}{\cs{englishhyphenmins} is removed}
 %    \begin{macrocode}
 \providehyphenmins{\CurrentOption}{\tw@\tw@}
 \providehyphenmins{russian}{\tw@\tw@}
@@ -1987,7 +1869,7 @@ and the derived files             russianb.ins,
 %    The macro |\noextrasrussian| is used to cancel the actions of
 %    |\extrasrussian|.
 %
-% \changes{1.1b}{1996 Feb 20}{Added switch to \texttt{LWN}
+% \changes{1.1b}{1996/02/20}{Added switch to \texttt{LWN}
 %    encoding}
 %
 %    First, we instruct \pkg{babel} to switch font encoding using earlier
@@ -2190,7 +2072,7 @@ and the derived files             russianb.ins,
 %    macro |\th| that conflicts with the text symbol |\th|
 %    defined in Latin~1 encoding:
 %
-% \changes{1.2}{2004 May  21}{Change definition of \cs{th}
+% \changes{1.2}{2004/05/21}{Change definition of \cs{th}
 %    only for this language}
 %    \begin{macrocode}
 \def\sh{\mathop{\operator@font sh}\nolimits}
@@ -2217,7 +2099,7 @@ and the derived files             russianb.ins,
 %    \DescribeOther\NOK{}%
 %    \DescribeOther\Proj{}%
 %    Finally, we define some rare Russian mathematical symbols:
-% \changes{1.3i}{2017 Jan 04}{\cs{NOD} and similar log-functions fixed}
+% \changes{1.3i}{2017/01/04}{\cs{NOD} and similar log-functions fixed}
 %    \begin{macrocode}
 \def\Prob{\mathop{\kern\z@\mathsf{P}}\nolimits}
 \def\Variance{\mathop{\kern\z@\mathsf{D}}\nolimits}
@@ -2254,14 +2136,96 @@ and the derived files             russianb.ins,
 %    \begin{macrocode}
 \ldf@finish{russian}
 %    \end{macrocode}
-%
-%    \begin{macrocode}
-%    \end{macrocode}
 %\iffalse
 %</code>
 %\fi
-%
-% \CheckSum{2326}
-%
+%\CheckSum{2327}
 %\Finale
 %
+%%
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote \"    Hash (number) \#
+%%   Dollar        \$     Percent      \%    Ampersand     \&
+%%   Acute accent  \'     Left paren   \(    Right paren   \)
+%%   Asterisk      \*     Plus         \+    Comma         \,
+%%   Minus         \-     Point        \.    Solidus       \/
+%%   Colon         \:     Semicolon    \;    Less than     \<
+%%   Equals        \=     Greater than \>    Question mark \?
+%%   Commercial at \@     Left bracket \[    Backslash     \\
+%%   Right bracket \]     Circumflex   \^    Underscore    \_
+%%   Grave accent  \`     Left brace   \{    Vertical bar  \|
+%%   Right brace   \}     Tilde        \~}
+%%
+%\endinput
+
+%% Nonunicode Cyrillic Letters
+%% \CYRA=А
+%% \CYRB=Б
+%% \CYRV=В
+%% \CYRG=Г
+%% \CYRGUP=Ґ
+%% \CYRD=Д
+%% \CYRE=Е
+%% \CYRIE=Є
+%% \CYRZH=Ж
+%% \CYRZ=З
+%% \CYRI=И
+%% \CYRII=I
+%% \CYRYI=Ї
+%% \CYRISHRT=Й
+%% \CYRK=К
+%% \CYRL=Л
+%% \CYRM=М
+%% \CYRN=Н
+%% \CYRO=О
+%% \CYRP=П
+%% \CYRR=Р
+%% \CYRS=С
+%% \CYRT=Т
+%% \CYRU=У
+%% \CYRF=Ф
+%% \CYRH=Х
+%% \CYRC=Ц
+%% \CYRCH=Ч
+%% \CYRSH=Ш
+%% \CYRSHCH=Щ
+%% \CYRYU=Ю
+%% \CYRYA=Я
+%% \CYRSFTSN=Ь
+%%
+%% \cyra=а
+%% \cyrb=б
+%% \cyrv=в
+%% \cyrg=г
+%% \cyrgup=ґ
+%% \cyrd=д
+%% \cyre=е
+%% \cyrie=є
+%% \cyrzh=ж
+%% \cyrz=з
+%% \cyri=и
+%% \cyrii=i
+%% \cyryi=ї
+%% \cyrishrt=й
+%% \cyrk=к
+%% \cyrl=л
+%% \cyrm=м
+%% \cyrn=н
+%% \cyro=о
+%% \cyrp=п
+%% \cyrr=р
+%% \cyrs=с
+%% \cyrt=т
+%% \cyru=у
+%% \cyrf=ф
+%% \cyrh=х
+%% \cyrc=ц
+%% \cyrch=ч
+%% \cyrsh=ш
+%% \cyrshch=щ
+%% \cyryu=ю
+%% \cyrya=я
+%% \cyrsftsn=ь
