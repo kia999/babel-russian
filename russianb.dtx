@@ -121,8 +121,12 @@ might be absent.
 
 2017-08-08 version 1.3j
 
-    * TU encoding is set as default for XeTeX and LuaTeX; EU1 and EU2 encodings
-      are kept for backward compatibility.
+    * TU encoding is set as default for X∃TeX and LuaTeX.
+
+    * \cyrdash now always prints dash 20% shorter than emdash.
+
+
+2017-01-12 version 1.3i
 
     * Bug fixed in \NOD, \NOK and similar log-functions (thanks to V. Vlasov).
 
@@ -258,7 +262,7 @@ and the derived files             russianb.ins,
 %</internal>
 %<*code>
 \NeedsTeXFormat{LaTeX2e}
-%\ProvidesFile{russianb.ldf}[2017/08/08 1.3j Russian support for the Babel system]
+%\ProvidesFile{russianb.ldf}[2017/10/10 1.3k Russian support for the Babel system]
 %</code>
 %<*driver>
 \documentclass[a4paper]{ltxdoc}
@@ -918,7 +922,7 @@ and the derived files             russianb.ins,
 %    argument of \cs{LdfInit}}
 %    \begin{macrocode}
 \ProvidesLanguage{russian}
-    [2017/08/12 1.3j Russian support for the Babel system]
+    [2017/10/10 1.3k Russian support for the Babel system]
 \LdfInit{russian}{captionsrussian}
 %    \end{macrocode}
 %
@@ -1443,7 +1447,7 @@ and the derived files             russianb.ins,
 %
 %    The |\cyrdash| macro is not defined in the Unicode encoding TU. The fake
 %    definition given above cope with this case.
-%    
+%
 %
 %   \subsection{Switching to/from Russian}
 %
@@ -2028,7 +2032,7 @@ and the derived files             russianb.ins,
 %
 %
 %    As of version 1.2 the macros |\cyrmath..| are not supported any more. They
-%    requires package \pkg{textmath} which is not available now. Instead of
+%    require package \pkg{textmath} which is not available now. Instead of
 %    |\cyrmath..| it is advised to use corresponding |\text..| commands; they
 %    do work in math mode.
 %    \begin{macrocode}
@@ -2072,23 +2076,41 @@ and the derived files             russianb.ins,
 %    macro |\th| that conflicts with the text symbol |\th|
 %    defined in Latin~1 encoding:
 %
-% \changes{1.2}{2004/05/21}{Change definition of \cs{th}
-%    only for this language}
+% \changes{1.2}{2004/05/21}{Change definition of \cs{th}}
+% \changes{1.3k}{2017/08/11}{Log-like functions made robust}
 %    \begin{macrocode}
-\def\sh{\mathop{\operator@font sh}\nolimits}
-\def\ch{\mathop{\operator@font ch}\nolimits}
-\def\tg{\mathop{\operator@font tg}\nolimits}
-\def\ctg{\mathop{\operator@font ctg}\nolimits}
-\def\arctg{\mathop{\operator@font arctg}\nolimits}
-\def\arcctg{\mathop{\operator@font arcctg}\nolimits}
-\addto\extrasrussian{%
-  \babel@save{\th}%
-  \let\ltx@th\th
-  \def\th{\textormath{\ltx@th}%
-                     {\mathop{\operator@font th}\nolimits}}%
-  }
-\def\cth{\mathop{\operator@font cth}\nolimits}
-\def\cosec{\mathop{\operator@font cosec}\nolimits}
+\AtBeginDocument{%
+  \@ifpackageloaded{amsopn}
+  {%
+    \DeclareMathOperator{\sh}{sh}%\MakeRobust\sh
+    \DeclareMathOperator{\ch}{ch}%\MakeRobust\ch
+    \DeclareMathOperator{\tg}{tg}%\MakeRobust\tg
+    \DeclareMathOperator{\ctg}{ctg}%\MakeRobust\ctg
+    \DeclareMathOperator{\arctg}{arctg}%\MakeRobust\arctg%
+    \DeclareMathOperator{\arcctg}{arcctg}%\MakeRobust\arcctg%
+    \DeclareMathOperator{\cth}{cth}%\MakeRobust\cth%
+    \DeclareMathOperator{\cosec}{cosec}%\MakeRobust\cosec%
+    \DeclareMathOperator{\math@th}{th}%
+  }{%
+    \DeclareRobustCommand\sh{\mathop{\operator@font sh}\nolimits}%\MakeRobust\sh%
+    \DeclareRobustCommand\ch{\mathop{\operator@font ch}\nolimits}%\MakeRobust\ch%
+    \DeclareRobustCommand\tg{\mathop{\operator@font tg}\nolimits}%\MakeRobust\tg%
+    \DeclareRobustCommand\ctg{\mathop{\operator@font ctg}\nolimits}%\MakeRobust\ctg%
+    \DeclareRobustCommand{\arctg}{\mathop{\operator@font arctg}\nolimits}%
+    \DeclareRobustCommand\arcctg{\mathop{\operator@font arcctg}\nolimits}%\MakeRobust\arcctg%
+    \DeclareRobustCommand\cth{\mathop{\operator@font cth}\nolimits}%\MakeRobust\cth%
+    \DeclareRobustCommand\cosec{\mathop{\operator@font cosec}\nolimits}%\MakeRobust\cosec%
+    \DeclareRobustCommand{\math@th}{\mathop{\operator@font arctg}\nolimits}%
+  }%
+%  \addto\extrasrussian{%
+%    \babel@save{\th}%
+%    \let\text@th\th
+%    %\def\th{\TextOrMath{\text@th}{\math@th}}%
+%    \DeclareRobustCommand{\th}{\TextOrMath{\text@th}{\math@th}}
+%  }%
+  \let\text@th\th
+  \DeclareRobustCommand{\th}{\TextOrMath{\text@th}{\math@th}}
+}
 %    \end{macrocode}
 %
 %    \Describe\Prob{}%
@@ -2110,11 +2132,6 @@ and the derived files             russianb.ins,
   \def\NOK{\mathop{\mathrm{НОК}}\nolimits}
   \def\Proj{\mathop{\mathrm{Пр}}\nolimits}
 \else
-%  \def\nod{\mathop{\cyrmathrm{\cyrn.\cyro.\cyrd.}}\nolimits}
-%  \def\nok{\mathop{\cyrmathrm{\cyrn.\cyro.\cyrk.}}\nolimits}
-%  \def\NOD{\mathop{\cyrmathrm{\CYRN\CYRO\CYRD}}\nolimits}
-%  \def\NOK{\mathop{\cyrmathrm{\CYRN\CYRO\CYRK}}\nolimits}
-%  \def\Proj{\mathop{\cyrmathrm{\CYRP\cyrr}}\nolimits}
   \def\nod{\mathop{\textnormal{\cyrn.\cyro.\cyrd.}}\nolimits}
   \def\nok{\mathop{\textnormal{\cyrn.\cyro.\cyrk.}}\nolimits}
   \def\NOD{\mathop{\textnormal{\CYRN\CYRO\CYRD}}\nolimits}
@@ -2131,15 +2148,14 @@ and the derived files             russianb.ins,
 %    loading a local configuration file, and preparing the language
 %    to be activated at |\begin{document}| time.
 %
-% \changes{1.1d}{1996/11/03}{Now use \cs{ldf@finish} to wrap
-%    up}
+% \changes{1.1d}{1996/11/03}{Now use \cs{ldf@finish} to wrap up}
 %    \begin{macrocode}
 \ldf@finish{russian}
 %    \end{macrocode}
 %\iffalse
 %</code>
 %\fi
-%\CheckSum{2327}
+%\CheckSum{2354}
 %\Finale
 %
 %%
