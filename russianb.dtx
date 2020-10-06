@@ -7,7 +7,7 @@
 %<*readme>
 ----------------------------------------------------------------
 
-Russian language module for Babel, v1.3j
+Russian language module for Babel, v1.3k
 
 Released under the LaTeX Project Public License v1.3c or later.
 See http://www.latex-project.org/lppl.txt
@@ -21,15 +21,14 @@ The Current Maintainer is Igor A. Kotelnikov <kia999 at mail dot ru>.
 
 1. INSTALLATION
 
-- unpack babel-russian.zip
-- run "xelatex.exe russianb.dtx" (recommended)
+- Unpack babel-russian.zip.
+- Run "xelatex.exe russianb.dtx" (recommended)
   or "pdflatex.exe russianb.dtx";
-  run "tex.exe russianb.dtx"
+  alternatively run "tex.exe russianb.dtx"
   or "tex.exe russianb.ins", if you don't need documentation
-- move "russianb.ldf" to <textmf>/tex/generic/babel/contrib/
-- move "russianb.pdf" and README to <textmf>/doc/latex/russian-babel/
-- update filename base (see documentation for your TeX system)
-
+- Move "russianb.ldf" to <textmf>/tex/latex/babel-russian
+- Move "russianb.pdf" and README to <textmf>/doc/latex/russian-babel/
+- Update filename base (see documentation for your TeX system)
 
 2. USAGE
 
@@ -41,7 +40,8 @@ a set of packages loaded in the preamble of a source TeX file. It is important
 to keep recommended order of the packages loaded, especially when running
 Unicode engines in a compatibility 8-bit mode.
 
-In the examples below, it is assumed that a source file has utf8 input encoding.
+In the examples below, it is assumed that a source file to be compile
+has utf8 input encoding.
 
 2.1. 8-bit mode
 
@@ -74,8 +74,8 @@ In the examples below, it is assumed that a source file has utf8 input encoding.
     \usepackage[english,russian]{babel}
 
 Instead of the Computer Modern Unicode (CMU) fonts loaded in this example,
-you may try any True Type or Open Type font installed on your computer provided
-that that font came with Russian letters.
+you may try any True Type or Open Type fonts installed on your computer provided
+that those fonts came with Russian letters.
 
 2.3 Typesetting ancient book
 
@@ -119,11 +119,16 @@ might be absent.
 
 5. CHANGES
 
+2020-09-06 version 1.3k
+
+    * Bug fixed in definition of \Russian command (thanks to Javier Bezos).
+
+
 2017-08-08 version 1.3j
 
     * TU encoding is set as default for X∃TeX and LuaTeX.
 
-    * \cyrdash now always prints dash 20% shorter than emdash.
+    * \cyrdash now always prints dash 20 percents shorter than emdash.
 
 
 2017-01-12 version 1.3i
@@ -215,7 +220,7 @@ See http://www.latex-project.org/lppl.txt
 \endpreamble
 \postamble
 ----------------------------------------------------------------
-Copyright 2011-2017 Igor A. Kotelnikov.
+Copyright 2011-2020 Igor A. Kotelnikov.
 Copyright 1995-2008 Olga Lapko.
 Copyright 1989-2012 Johannes L. Braams.
 
@@ -262,7 +267,7 @@ and the derived files             russianb.ins,
 %</internal>
 %<*code>
 \NeedsTeXFormat{LaTeX2e}
-%\ProvidesFile{russianb.ldf}[2017/10/10 1.3k Russian support for the Babel system]
+\ProvidesFile{russianb.ldf}[2020/09/09 1.3k Russian support for the Babel system]
 %</code>
 %<*driver>
 \documentclass[a4paper]{ltxdoc}
@@ -277,11 +282,18 @@ and the derived files             russianb.ins,
     \usepackage{fontspec}
     \defaultfontfeatures{Ligatures={TeX}}
     \setmainfont{CMU Serif}
-    \setsansfont{CMU Sans Serif}
-    \setmonofont{CMU Typewriter Text}
-    %\setmonofont[Scale=MatchLowercase]{Courier New}
-    %\setmonofont[Scale=MatchUppercase]{Courier New}
-    %\setmonofont{Courier New}
+    %\setmainfont{STIX Two}[
+    %    UprightFont={* Math},
+    %    %UprightFont={* Text},
+    %    ItalicFont={* Text Italic},
+    %    BoldFont={* Text Bold},
+    %    BoldItalicFont={* Text Bold Italic},
+    %]
+    %\setsansfont{CMU Sans Serif}
+    %\setmonofont{CMU Typewriter Text}
+    %%\setmonofont[Scale=MatchLowercase]{Courier New}
+    %%\setmonofont[Scale=MatchUppercase]{Courier New}
+    %%\setmonofont{Courier New}
 \else
     \usepackage[X2,T2A]{fontenc}
     \usepackage[utf8]{inputenc}
@@ -416,11 +428,22 @@ and the derived files             russianb.ins,
 % \DoNotIndex{\cyrp,\cyrs,\cyrshch,\cyru,\CYRV,\cyrya}
 % \DoNotIndex{\CYRA,\CYRB,\cyrch,\CYRE,\CYREREV,\CYRF,\cyrf,\CYRI,\cyrishrt}
 % \DoNotIndex{\CYRO,\CYRR,\cyrsftsn,\CYRYA,\cyryu,\cyrzh}
-% \DoNotIndex{\CYRCH, \CYRG, \CYRL, \CYRZH}
+% \DoNotIndex{\CYRSH,\cyrsh,\CYRSHCH,\CYRYU,\CYRZ,\CYRZH,\CYRG,\CYRH}
 % \DoNotIndex{\z@skip,\z@}
-% \DoNotIndex{\|,\~,\ ,\,}
+% \DoNotIndex{\|,\~,\ }
+% \DoNotIndex{\\&,\',\(,\),\`,\\,\/,\.}
+% \DoNotIndex{\begin,\DeclareUTFcharacter}
+% \DoNotIndex{\csname,\def}
+% \DoNotIndex{\else,\endcsname,\end}
+% \DoNotIndex{\expandafter,\fi}
+% \DoNotIndex{\hbox,\hss}
+% \DoNotIndex{\iffalse,\ifx,\ignorespaces,\iflanguage}
+% \DoNotIndex{\language,\lastskip,\ldots,\let,\natexlab,\newblock,\nobreak}
+% \DoNotIndex{\providecommand,\ProvideTextCommandDefault,\relax,\renewcommand}
+% \DoNotIndex{\selectlanguage,\selectlanguageifdefined,\small,\textemdash}
+% \DoNotIndex{\or,\if,\fi,\unskip,\url,\UTFencname}
+% \DoNotIndex{\,,\catcode,\cite,\citeauthor,\citet,\citeyear,\href,\hskip,\ifdim}
 %
-
 %\GetFileInfo{russianb.dtx}
 %\GetFileInfo{russianb.ldf}
 %
@@ -472,7 +495,7 @@ and the derived files             russianb.ins,
 % (\file{.tex}) file. Output encoding is also known as the font encoding. It is
 % implemented within the font files.
 %
-% Generally, the user may choose between different Cyrillic
+% Generally, the user may choose between different available Cyrillic
 % encodings. The current support for Cyrillic uses LH family of MetaFont fonts
 % and theirs Postscript versions such as CM-super. Lua\LaTeX\ and Xe\LaTeX,
 % being the Unicode-based succeeders of \LaTeX, allow also for any Open Type
@@ -719,11 +742,11 @@ and the derived files             russianb.ins,
 %   |\glqq| & |"`| &
 %       German opening double quote (looks like ,\kern-0.08em,).     \\
 %   |\grqq| & |"'| &
-%       German closing double quote (looks like ``).                \\
+%       German closing double quote (looks like ``).                 \\
 %   |\guillemotleft| & |"<| &
 %       French opening double quote (looks like $<\!\!<$).           \\
 %   |\guillemotright| & |">| &
-%       French closing double quote (looks like $>\!\!>$).          \\
+%       French closing double quote (looks like $>\!\!>$).           \\
 %   |\dq|   &  &
 %       Original quotes character (|"|).                       \\[0.5em]
 %   |\babelhyphen{soft}|
@@ -744,9 +767,9 @@ and the derived files             russianb.ins,
 %            equivalent to |\babelhyphen{hard}| in \pkg{babel} 3.9. \\
 %   |\babelhyphen{nobreak}|
 %   & \verb="|= & Disables ligature at this position;
-%            equivalent to |\babelhyphen{nobreak}| (??) in \pkg{babel} 3.9.
+%            equivalent to |\babelhyphen{nobreak}| in \pkg{babel} 3.9.
 %                                                                  \\[0.5em]
-%   |\cyrdash|  &        & Row Cyrillic emdash (does not care
+%   |\cyrdash|  &        & Raw Cyrillic emdash (does not care
 %       spaces around).                                            \\
 %   |\cdash---| & |"---| &
 %       Cyrillic emdash in plain text.                              \\
@@ -886,6 +909,7 @@ and the derived files             russianb.ins,
 %
 %    \section{Implementation}
 %
+% \changes{1.3k}{2020/09/06}{bug in definition of \cs{Russian} fixed}
 % \changes{1.3h}{2016/02/18}{\cs{cyrdash} is redefined}
 % \changes{1.3h}{2016/02/18}{Bugs fixed in captions for revtex4 and revtex4-1}
 % \changes{1.3g}{2015/05/01}{Added support for revtex4 and revtex4-1 classes}
@@ -922,7 +946,7 @@ and the derived files             russianb.ins,
 %    argument of \cs{LdfInit}}
 %    \begin{macrocode}
 \ProvidesLanguage{russian}
-    [2017/10/10 1.3k Russian support for the Babel system]
+    [2020/09/09 1.3k Russian support for the Babel system]
 \LdfInit{russian}{captionsrussian}
 %    \end{macrocode}
 %
@@ -1125,7 +1149,7 @@ and the derived files             russianb.ins,
 %    but redefine its meaning; now  |\Russian| is simply an alias for
 %    |\selectlanguage{russian}|.
 %    \begin{macrocode}
-\DeclareRobustCommand{\Russian}{\selectlanguage{\russian}}
+\DeclareRobustCommand{\Russian}{\selectlanguage{russian}}
 %    \end{macrocode}
 %
 %  \Describe\cyrillictext{}
@@ -2077,7 +2101,7 @@ and the derived files             russianb.ins,
 %    defined in Latin~1 encoding:
 %
 % \changes{1.2}{2004/05/21}{Change definition of \cs{th}}
-% \changes{1.3k}{2017/08/11}{Log-like functions made robust}
+% \changes{1.3j}{2017/08/11}{Log-like functions made robust}
 %    \begin{macrocode}
 \AtBeginDocument{%
   \@ifpackageloaded{amsopn}
@@ -2155,7 +2179,7 @@ and the derived files             russianb.ins,
 %\iffalse
 %</code>
 %\fi
-%\CheckSum{2354}
+%\CheckSum{2353}
 %\Finale
 %
 %%
