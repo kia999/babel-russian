@@ -1,8 +1,6 @@
-# babel-russian
-Russian language module for Babel package for LaTeX system of typesetting
 ----------------------------------------------------------------
 
-Russian language module for Babel, v1.3j
+Russian language module for Babel, v1.3k
 
 Released under the LaTeX Project Public License v1.3c or later.
 See http://www.latex-project.org/lppl.txt
@@ -15,14 +13,14 @@ The Current Maintainer is Igor A. Kotelnikov <kia999 at mail dot ru>.
 
 1. INSTALLATION
 
-- unpack babel-russian.zip
-- run "xelatex.exe russianb.dtx" (recommended)
+- Unpack babel-russian.zip.
+- Run "xelatex.exe russianb.dtx" (recommended)
   or "pdflatex.exe russianb.dtx";
-  run "tex.exe russianb.dtx"
+  alternatively run "tex.exe russianb.dtx"
   or "tex.exe russianb.ins", if you don't need documentation
-- move "russianb.ldf" to <textmf>/tex/generic/babel/contrib/
-- move "russianb.pdf" and README to <textmf>/doc/latex/russian-babel/
-- update filename base (see documentation for your TeX system)
+- Move "russianb.ldf" to <textmf>/tex/latex/babel-russian
+- Move "russianb.pdf" and README to <textmf>/doc/latex/russian-babel/
+- Update filename base (see documentation for your TeX system)
 
 2. USAGE
 
@@ -34,7 +32,8 @@ a set of packages loaded in the preamble of a source TeX file. It is important
 to keep recommended order of the packages loaded, especially when running
 Unicode engines in a compatibility 8-bit mode.
 
-In the examples below, it is assumed that a source file has utf8 input encoding.
+In the examples below, it is assumed that a source file to be compile
+has utf8 input encoding.
 
 2.1. 8-bit mode
 
@@ -67,8 +66,8 @@ In the examples below, it is assumed that a source file has utf8 input encoding.
     \usepackage[english,russian]{babel}
 
 Instead of the Computer Modern Unicode (CMU) fonts loaded in this example,
-you may try any True Type or Open Type font installed on your computer provided
-that that font came with Russian letters.
+you may try any True Type or Open Type fonts installed on your computer provided
+that those fonts came with Russian letters.
 
 2.3 Typesetting ancient book
 
@@ -109,7 +108,17 @@ might be absent.
 
 5. CHANGES
 
-2017-01-12 version 1.3j
+2020-09-06 version 1.3k
+
+    * Bug fixed in definition of \Russian command (thanks to Javier Bezos).
+
+2017-08-08 version 1.3j
+
+    * TU encoding is set as default for X∃TeX and LuaTeX.
+
+    * \cyrdash now always prints dash 20 percents shorter than emdash.
+
+2017-01-12 version 1.3i
 
     * Bug fixed in \NOD, \NOK and similar log-functions (thanks to V. Vlasov).
 
@@ -176,3 +185,89 @@ Original source:  russianb.dtx,
     2008/03/21 v1.1r Russian support from the babel system.
 
 ----------------------------------------------------------------
+%%
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote \"    Hash (number) \#
+%%   Dollar        \$     Percent      \%    Ampersand     \&
+%%   Acute accent  \'     Left paren   \(    Right paren   \)
+%%   Asterisk      \*     Plus         \+    Comma         \,
+%%   Minus         \-     Point        \.    Solidus       \/
+%%   Colon         \:     Semicolon    \;    Less than     \<
+%%   Equals        \=     Greater than \>    Question mark \?
+%%   Commercial at \@     Left bracket \[    Backslash     \\
+%%   Right bracket \]     Circumflex   \^    Underscore    \_
+%%   Grave accent  \`     Left brace   \{    Vertical bar  \|
+%%   Right brace   \}     Tilde        \~}
+%%
+
+%% Nonunicode Cyrillic Letters
+%% \CYRA=А
+%% \CYRB=Б
+%% \CYRV=В
+%% \CYRG=Г
+%% \CYRGUP=Ґ
+%% \CYRD=Д
+%% \CYRE=Е
+%% \CYRIE=Є
+%% \CYRZH=Ж
+%% \CYRZ=З
+%% \CYRI=И
+%% \CYRII=I
+%% \CYRYI=Ї
+%% \CYRISHRT=Й
+%% \CYRK=К
+%% \CYRL=Л
+%% \CYRM=М
+%% \CYRN=Н
+%% \CYRO=О
+%% \CYRP=П
+%% \CYRR=Р
+%% \CYRS=С
+%% \CYRT=Т
+%% \CYRU=У
+%% \CYRF=Ф
+%% \CYRH=Х
+%% \CYRC=Ц
+%% \CYRCH=Ч
+%% \CYRSH=Ш
+%% \CYRSHCH=Щ
+%% \CYRYU=Ю
+%% \CYRYA=Я
+%% \CYRSFTSN=Ь
+%%
+%% \cyra=а
+%% \cyrb=б
+%% \cyrv=в
+%% \cyrg=г
+%% \cyrgup=ґ
+%% \cyrd=д
+%% \cyre=е
+%% \cyrie=є
+%% \cyrzh=ж
+%% \cyrz=з
+%% \cyri=и
+%% \cyrii=i
+%% \cyryi=ї
+%% \cyrishrt=й
+%% \cyrk=к
+%% \cyrl=л
+%% \cyrm=м
+%% \cyrn=н
+%% \cyro=о
+%% \cyrp=п
+%% \cyrr=р
+%% \cyrs=с
+%% \cyrt=т
+%% \cyru=у
+%% \cyrf=ф
+%% \cyrh=х
+%% \cyrc=ц
+%% \cyrch=ч
+%% \cyrsh=ш
+%% \cyrshch=щ
+%% \cyryu=ю
+%% \cyrya=я
+%% \cyrsftsn=ь
