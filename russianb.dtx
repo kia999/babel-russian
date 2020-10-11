@@ -1363,12 +1363,15 @@ and the derived files             russianb.ins,
 %    which indicates explicitly breakpoint for hyphenation in a word. Meaning
 %    of these shorthands is explained in table~\ref{tab:russian-quote}.
 %
+%    Some of this definitions need a alternative definitions for the booksmarks.
 %    \begin{macrocode}
+\providecommand\texorpdfstring[2]{#1}
 \declare@shorthand{russian}{""}{\hskip\z@skip}
-\declare@shorthand{russian}{"~}{\textormath{\leavevmode\hbox{-}}{-}}
+\declare@shorthand{russian}{"~}{\texorpdfstring{\textormath{\leavevmode\hbox{-}}{-}}{-}}
 \declare@shorthand{russian}{"=}{\nobreak-\hskip\z@skip}
 \declare@shorthand{russian}{"|}{%
-  \textormath{\nobreak\discretionary{-}{}{\kern.03em}\allowhyphens}{}}
+  \texorpdfstring{%
+   \textormath{\nobreak\discretionary{-}{}{\kern.03em}\allowhyphens}{}}{}}
 %    \end{macrocode}
 %
 %    \subsubsection{Emdash, endash and hyphenation sign}
@@ -1380,10 +1383,10 @@ and the derived files             russianb.ins,
 %    its meaning to |\russian@sh@next| and finally call for |\russian@sh@tmp|.
 %    \begin{macrocode}
 \declare@shorthand{russian}{"-}{%
-  \def\russian@sh@tmp{%
+  \texorpdfstring{\def\russian@sh@tmp{%
     \if\russian@sh@next-\expandafter\russian@sh@emdash
     \else\expandafter\russian@sh@hyphen\fi}%
-  \futurelet\russian@sh@next\russian@sh@tmp}
+  \futurelet\russian@sh@next\russian@sh@tmp}{-}}
 %    \end{macrocode}
 %    Two macros |\russian@sh@hyphen| and |\russian@sh@emdash| called by
 %    |\russian@sh@tmp|  are defined below. The second of
