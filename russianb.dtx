@@ -7,7 +7,7 @@
 %<*readme>
 ----------------------------------------------------------------
 
-Russian language module for Babel, v1.3k
+Russian language module for Babel, v1.3l
 
 Released under the LaTeX Project Public License v1.3c or later.
 See http://www.latex-project.org/lppl.txt
@@ -118,6 +118,11 @@ might be absent.
 
 
 5. CHANGES
+
+2020-10-16 version 1.3l
+
+    * Patches for Russian language from hyperref package to babel-russian module
+      (thanks to Ulrike Fischer).
 
 2020-09-06 version 1.3k
 
@@ -267,7 +272,7 @@ and the derived files             russianb.ins,
 %</internal>
 %<*code>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesFile{russianb.ldf}[2020/09/09 1.3k Russian support for the Babel system]
+\ProvidesFile{russianb.ldf}[2020/10/16 1.3l Russian support for the Babel system]
 %</code>
 %<*driver>
 \documentclass[a4paper]{ltxdoc}
@@ -281,16 +286,10 @@ and the derived files             russianb.ins,
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi>0
     \usepackage{fontspec}
     \defaultfontfeatures{Ligatures={TeX}}
-    \setmainfont{CMU Serif}
-    %\setmainfont{STIX Two}[
-    %    UprightFont={* Math},
-    %    %UprightFont={* Text},
-    %    ItalicFont={* Text Italic},
-    %    BoldFont={* Text Bold},
-    %    BoldItalicFont={* Text Bold Italic},
-    %]
-    %\setsansfont{CMU Sans Serif}
-    %\setmonofont{CMU Typewriter Text}
+    \setmainfont{cmunrm.otf}%{CMU Serif}
+    %\setmainfont{STIX Two Text}
+    \setsansfont{cmunss.otf}%{CMU Sans Serif}
+    \setmonofont{cmuntt.otf}%{CMU Typewriter Text}
     %%\setmonofont[Scale=MatchLowercase]{Courier New}
     %%\setmonofont[Scale=MatchUppercase]{Courier New}
     %%\setmonofont{Courier New}
@@ -909,7 +908,8 @@ and the derived files             russianb.ins,
 %
 %    \section{Implementation}
 %
-% \changes{1.3k}{2020/09/06}{bug in definition of \cs{Russian} fixed}
+% \changes{1.3l}{2020/10/16}{Added support to hyperref package}
+% \changes{1.3k}{2020/09/06}{Bug in definition of \cs{Russian} fixed}
 % \changes{1.3h}{2016/02/18}{\cs{cyrdash} is redefined}
 % \changes{1.3h}{2016/02/18}{Bugs fixed in captions for revtex4 and revtex4-1}
 % \changes{1.3g}{2015/05/01}{Added support for revtex4 and revtex4-1 classes}
@@ -1364,6 +1364,7 @@ and the derived files             russianb.ins,
 %    of these shorthands is explained in table~\ref{tab:russian-quote}.
 %
 %    Some of this definitions need a alternative definitions for the booksmarks.
+% \changes{1.3l}{2020/10/16}{Modified shorthands}
 %    \begin{macrocode}
 \providecommand\texorpdfstring[2]{#1}
 \declare@shorthand{russian}{""}{\hskip\z@skip}
@@ -1381,6 +1382,7 @@ and the derived files             russianb.ins,
 %    If it is, we output an emdash, otherwise a hyphen sign. Therefor
 %    \TeX\ looks for the next token after the first `|-|', writes
 %    its meaning to |\russian@sh@next| and finally call for |\russian@sh@tmp|.
+% \changes{1.3l}{2020/10/16}{Modified shorthands}
 %    \begin{macrocode}
 \declare@shorthand{russian}{"-}{%
   \texorpdfstring{\def\russian@sh@tmp{%
@@ -1409,7 +1411,7 @@ and the derived files             russianb.ins,
     \errmessage{Wrong usage of cdash}\fi\fi\fi}
 %    \end{macrocode}
 %
-%   All these 3 internal macros call for |\cyrdash|, which type Cyrillic
+%   All these 3 internal macros call for |\cyrdash|, which types Cyrillic
 %   emdash, but put different spaces around the dash.
 %
 %   |\@Acdash| is invoked by |"---|. It types Cyrillic emdash to be used
@@ -2182,7 +2184,7 @@ and the derived files             russianb.ins,
 %\iffalse
 %</code>
 %\fi
-%\CheckSum{2353}
+%\CheckSum{2358}
 %\Finale
 %
 %%

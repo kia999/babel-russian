@@ -12,7 +12,7 @@
 %% See http://www.latex-project.org/lppl.txt
 %% ----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesFile{russianb.ldf}[2020/09/09 1.3k Russian support for the Babel system]
+\ProvidesFile{russianb.ldf}[2020/10/16 1.3l Russian support for the Babel system]
 \ProvidesLanguage{russian}
     [2020/09/09 1.3k Russian support for the Babel system]
 \LdfInit{russian}{captionsrussian}
@@ -129,16 +129,18 @@
 \declare@shorthand{russian}{"'}{\textquotedblleft}
 \declare@shorthand{russian}{"<}{\guillemotleft}
 \declare@shorthand{russian}{">}{\guillemotright}
+\providecommand\texorpdfstring[2]{#1}
 \declare@shorthand{russian}{""}{\hskip\z@skip}
-\declare@shorthand{russian}{"~}{\textormath{\leavevmode\hbox{-}}{-}}
+\declare@shorthand{russian}{"~}{\texorpdfstring{\textormath{\leavevmode\hbox{-}}{-}}{-}}
 \declare@shorthand{russian}{"=}{\nobreak-\hskip\z@skip}
 \declare@shorthand{russian}{"|}{%
-  \textormath{\nobreak\discretionary{-}{}{\kern.03em}\allowhyphens}{}}
+  \texorpdfstring{%
+   \textormath{\nobreak\discretionary{-}{}{\kern.03em}\allowhyphens}{}}{}}
 \declare@shorthand{russian}{"-}{%
-  \def\russian@sh@tmp{%
+  \texorpdfstring{\def\russian@sh@tmp{%
     \if\russian@sh@next-\expandafter\russian@sh@emdash
     \else\expandafter\russian@sh@hyphen\fi}%
-  \futurelet\russian@sh@next\russian@sh@tmp}
+  \futurelet\russian@sh@next\russian@sh@tmp}{-}}
 \def\russian@sh@hyphen{\nobreak\-\bbl@allowhyphens}
 \def\russian@sh@emdash#1#2{\cdash-#1#2}
 \def\cdash#1#2#3{\def\tempx@{#3}%

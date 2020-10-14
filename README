@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
 
-Russian language module for Babel, v1.3k
+Russian language module for Babel, v1.3l
 
 Released under the LaTeX Project Public License v1.3c or later.
 See http://www.latex-project.org/lppl.txt
@@ -107,6 +107,11 @@ Consult your font documentation for other ancient glyphs which
 might be absent.
 
 5. CHANGES
+
+2020-10-16 version 1.3l
+
+    * Patches for Russian language from hyperref package to babel-russian module
+      (thanks to Ulrike Fischer).
 
 2020-09-06 version 1.3k
 
