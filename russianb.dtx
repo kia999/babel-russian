@@ -7,7 +7,7 @@
 %<*readme>
 ----------------------------------------------------------------
 
-#Russian language module for Babel
+# Russian language module for Babel
 
 Released under the LaTeX Project Public License v1.3c or later.
 See http://www.latex-project.org/lppl.txt
@@ -22,7 +22,7 @@ Current Maintainer is Igor A. Kotelnikov.
 Submit feature request to https://github.com/kia999/babel-russian
 
 
-##1. INSTALLATION
+## 1. INSTALLATION
 
 - Unpack babel-russian.zip.
 - Run "xelatex.exe russianb.dtx" (recommended)
@@ -33,7 +33,7 @@ Submit feature request to https://github.com/kia999/babel-russian
 - Move "russianb.pdf" and README to <textmf>/doc/latex/russian-babel/
 - Update filename base (see documentation for your TeX system)
 
-##2. USAGE
+## 2. USAGE
 
 Russian language definition file can be used both with legacy 8-bit engines
 (such as latex.exe or pdflatex.exe) and Unicode compilers (xelatex.exe or
@@ -46,28 +46,28 @@ Unicode engines in a compatibility 8-bit mode.
 In the examples below, it is assumed that a source file to be compile
 has utf8 input encoding.
 
-###2.1. 8-bit mode
+### 2.1. 8-bit mode
 
-####2.1.1 PDFLATeX, LaTeX
+#### 2.1.1 PDFLATeX, LaTeX
 
     \usepackage[T1,T2A]{fontenc}
     \usepackage[utf8]{inputenc}
     \usepackage[english,russian]{babel}
 
-####2.1.2 LuaLaTeX
+#### 2.1.2 LuaLaTeX
 
     \usepackage[T1,T2A]{fontenc}
     \usepackage[lutf8]{luainputenc}
     \usepackage[english,russian]{babel}
 
-####2.1.3 XeLaTeX
+#### 2.1.3 XeLaTeX
 
     \XeTeXinputencoding "bytes"
     \usepackage[utf8]{inputenc}
     \usepackage[T2A]{fontenc}
     \usepackage[english,russian]{babel}
 
-###2.2 Unicode mode, LuaLaTeX or XeLaTeX
+### 2.2 Unicode mode, LuaLaTeX or XeLaTeX
 
     \usepackage{fontspec}
         \defaultfontfeatures{Ligatures={TeX}}
@@ -80,7 +80,7 @@ Instead of the Computer Modern Unicode (CMU) fonts loaded in this example,
 you may try any True Type or Open Type fonts installed on your computer provided
 that those fonts came with Russian letters.
 
-###2.3 Typesetting ancient book
+### 2.3 Typesetting ancient book
 
     \usepackage[english,russian]{babel}
     \languageattribute{russian}{ancient}
@@ -92,12 +92,12 @@ Be sure to take X2 or OT2 font encodings when running 8-bit engine such
 as latex or pdflatex.
 
 
-##3. DOCUMENTATION
+## 3. DOCUMENTATION
 
 See russianb.pdf for more information.
 
 
-##4. KNOWN PROBLEMS
+## 4. KNOWN PROBLEMS
 
 Before switching from a legacy 8-bit engine (tex, pdftex) to an Unicode
 engine (xetex, luatex) and vise versa delete all .aux, .toc, .lot, .lof
@@ -120,7 +120,7 @@ Consult your font documentation for other ancient glyphs which
 might be absent.
 
 
-##5. CHANGES
+## 5. CHANGES
 
 2021-01-04 version 1.3m
 
@@ -985,6 +985,7 @@ and the derived files             russianb.ins,
 %
 %    \section{Implementation}
 %
+% \changes{1.3m}{2021/01/04}{\cs{cyrdash} is now alias to \cs{textemdash}}
 % \changes{1.3l}{2020/10/16}{Added support to hyperref package}
 % \changes{1.3k}{2020/09/06}{Bug in definition of \cs{Russian} fixed}
 % \changes{1.3h}{2016/02/18}{\cs{cyrdash} is redefined}
