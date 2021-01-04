@@ -7,12 +7,16 @@
 %% russianb.dtx  (with options: `code')
 %% ----------------------------------------------------------------
 %% Russian Language Support for the Babel package
-%% E-mail: kia999@mail.ru
+%% 
 %% Released under the LaTeX Project Public License v1.3c or later
 %% See http://www.latex-project.org/lppl.txt
+%% 
+%% Current version 1.3m dated by 2021-01-04
+%% 
+%% Submit feature request at https://github.com/kia999/babel-russian
 %% ----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesFile{russianb.ldf}[2020/10/16 1.3l Russian support for the Babel system]
+\ProvidesFile{russianb.ldf}[2021/01/04 1.3m Russian support for the Babel system]
 \ProvidesLanguage{russian}
     [2020/09/09 1.3k Russian support for the Babel system]
 \LdfInit{russian}{captionsrussian}
@@ -159,7 +163,7 @@
 \PackageInfo{babel}{Default for \string\cyrdash\space is provided}
 %%\ProvideTextCommandDefault{\cyrdash}{\iflanguage{russian}%
 %%  {\hbox to.8em{--\hss--}}{\textemdash}}
-\ProvideTextCommandDefault{\cyrdash}{\hbox to.8em{--\hss--}}
+\ProvideTextCommandDefault{\cyrdash}{\textemdash}
 \if@uni@ode
   %\captionsrussian@modern
   \addto\captionsrussian{%
@@ -672,8 +676,8 @@
 %% \cyrya=я
 %% \cyrsftsn=ь
 %% ----------------------------------------------------------------
-%% Copyright 2011-2020 Igor A. Kotelnikov.
-%% Copyright 1995-2008 Olga Lapko.
+%% Copyright 2011-2021 Igor A. Kotelnikov.
+%% Copyright 1995-2008 Olga G. Lapko.
 %% Copyright 1989-2012 Johannes L. Braams.
 %% 
 %% This file is a part of the Russian-Babel package.

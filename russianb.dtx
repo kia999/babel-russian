@@ -7,7 +7,7 @@
 %<*readme>
 ----------------------------------------------------------------
 
-Russian language module for Babel, v1.3l
+#Russian language module for Babel
 
 Released under the LaTeX Project Public License v1.3c or later.
 See http://www.latex-project.org/lppl.txt
@@ -16,10 +16,13 @@ The package provides support for use of Babel in documents written in Russian
 (in both traditional and ancient forms). The support is adapted for use both
 under legacy TEX engines, and under X∃TEX and LuaTEX.
 
-The Current Maintainer is Igor A. Kotelnikov <kia999 at mail dot ru>.
+Current version 1.3m dated by 2021-01-04
+
+Current Maintainer is Igor A. Kotelnikov.
+Submit feature request to https://github.com/kia999/babel-russian
 
 
-1. INSTALLATION
+##1. INSTALLATION
 
 - Unpack babel-russian.zip.
 - Run "xelatex.exe russianb.dtx" (recommended)
@@ -30,7 +33,7 @@ The Current Maintainer is Igor A. Kotelnikov <kia999 at mail dot ru>.
 - Move "russianb.pdf" and README to <textmf>/doc/latex/russian-babel/
 - Update filename base (see documentation for your TeX system)
 
-2. USAGE
+##2. USAGE
 
 Russian language definition file can be used both with legacy 8-bit engines
 (such as latex.exe or pdflatex.exe) and Unicode compilers (xelatex.exe or
@@ -43,28 +46,28 @@ Unicode engines in a compatibility 8-bit mode.
 In the examples below, it is assumed that a source file to be compile
 has utf8 input encoding.
 
-2.1. 8-bit mode
+###2.1. 8-bit mode
 
-2.1.1 PDFLATeX, LaTeX
+####2.1.1 PDFLATeX, LaTeX
 
     \usepackage[T1,T2A]{fontenc}
     \usepackage[utf8]{inputenc}
     \usepackage[english,russian]{babel}
 
-2.1.2 LuaLaTeX
+####2.1.2 LuaLaTeX
 
     \usepackage[T1,T2A]{fontenc}
     \usepackage[lutf8]{luainputenc}
     \usepackage[english,russian]{babel}
 
-2.1.3 XeLaTeX
+####2.1.3 XeLaTeX
 
     \XeTeXinputencoding "bytes"
     \usepackage[utf8]{inputenc}
     \usepackage[T2A]{fontenc}
     \usepackage[english,russian]{babel}
 
-2.2 Unicode mode, LuaLaTeX or XeLaTeX
+###2.2 Unicode mode, LuaLaTeX or XeLaTeX
 
     \usepackage{fontspec}
         \defaultfontfeatures{Ligatures={TeX}}
@@ -77,7 +80,7 @@ Instead of the Computer Modern Unicode (CMU) fonts loaded in this example,
 you may try any True Type or Open Type fonts installed on your computer provided
 that those fonts came with Russian letters.
 
-2.3 Typesetting ancient book
+###2.3 Typesetting ancient book
 
     \usepackage[english,russian]{babel}
     \languageattribute{russian}{ancient}
@@ -89,12 +92,12 @@ Be sure to take X2 or OT2 font encodings when running 8-bit engine such
 as latex or pdflatex.
 
 
-3. DOCUMENTATION
+##3. DOCUMENTATION
 
 See russianb.pdf for more information.
 
 
-4. KNOWN PROBLEMS
+##4. KNOWN PROBLEMS
 
 Before switching from a legacy 8-bit engine (tex, pdftex) to an Unicode
 engine (xetex, luatex) and vise versa delete all .aux, .toc, .lot, .lof
@@ -117,7 +120,18 @@ Consult your font documentation for other ancient glyphs which
 might be absent.
 
 
-5. CHANGES
+##5. CHANGES
+
+2021-01-04 version 1.3m
+
+    * The macro `\cyrdash` that prints Cyrillic dash has been changed.
+      Now it is alias of `\textemdash` in all encodings.
+
+    * New Customisation section is added to the module documentation. It
+      describes how to modify the `\cyrdash` macro and shorthand `"--~"` that
+      is intended to print Cyrillic dash in compound names of physical
+      laws, mathematical equations, company titles, e.t.c. such as the
+      Ostrogradsky-Gauss theorem (thanks to Olga Lapko).
 
 2020-10-16 version 1.3l
 
@@ -218,15 +232,19 @@ Original source:  russianb.dtx,
 \preamble
 ----------------------------------------------------------------
 Russian Language Support for the Babel package
-E-mail: kia999@mail.ru
+
 Released under the LaTeX Project Public License v1.3c or later
 See http://www.latex-project.org/lppl.txt
+
+Current version 1.3m dated by 2021-01-04
+
+Submit feature request at https://github.com/kia999/babel-russian
 ----------------------------------------------------------------
 \endpreamble
 \postamble
 ----------------------------------------------------------------
-Copyright 2011-2020 Igor A. Kotelnikov.
-Copyright 1995-2008 Olga Lapko.
+Copyright 2011-2021 Igor A. Kotelnikov.
+Copyright 1995-2008 Olga G. Lapko.
 Copyright 1989-2012 Johannes L. Braams.
 
 This file is a part of the Russian-Babel package.
@@ -262,7 +280,7 @@ and the derived files             russianb.ins,
 \nopreamble\nopostamble
 \usedir{doc/latex/babel-russian}
 \generate{
-  \file{README.}{\from{\jobname.dtx}{readme}}
+  \file{README.md}{\from{\jobname.dtx}{readme}}
 }
 \ifx\fmtname\nameofplainTeX
   \expandafter\endbatchfile
@@ -272,7 +290,7 @@ and the derived files             russianb.ins,
 %</internal>
 %<*code>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesFile{russianb.ldf}[2020/10/16 1.3l Russian support for the Babel system]
+\ProvidesFile{russianb.ldf}[2021/01/04 1.3m Russian support for the Babel system]
 %</code>
 %<*driver>
 \documentclass[a4paper]{ltxdoc}
@@ -360,15 +378,18 @@ and the derived files             russianb.ins,
      ,\languageshorthands,\useshorthands,\defineshorthand
      ,\AddBabelHook,\SetStringLoop,\SetCase,\AfterBabelLanguage
      ,\defaultfontfeatures,\setmainfont,\setsansfont,\setmonofont
-     ,\Russian,\cyrdash,\cdash
+     ,\Russian,\cyrdash,\cdash, \textemdash, \textemdash
      ,\cyr,\cyrillictext,\textcyrillic,\cyrillicencoding
      ,\addto,\captionsrussian,\daterussian,\noextrasrussian,\extrasrussian
      ,\languageattribute
      ,\glqq,\grqq,\guillemotleft,\guillemotright
      ,\Asbuk,\asbuk,\ch,\sh,\tg,\ctg,\arctg,\arcctg\,\th,\cth,\cosec
-     ,\nod3,\nok,\prog,\NOF\,\NOK,\Prog
+     ,\nod,\nok,\prog,\NOF\,\NOK,\Prog
      ,\dq,\Proj,\nod,\NOD,\nok,\NOK,\Prob,\Variance
      ,\XeTeXinputencoding
+     ,xetex,luatex,tex, pdftex
+     ,xelatex,lualatex,latex, pdflatex
+     ,en,em,ex
     }
     ,keywordstyle=[0]\color{thered}
     ,keywords=[1]{main,russian,english,german,frenchb
@@ -376,9 +397,9 @@ and the derived files             russianb.ins,
      ,stringprocess,afterextras
      ,soft,empty,nobreak,hard
      ,Renderer,Ligatures
-     ,modern,ancient
+     ,modern,ancient,standard
      ,T1,T2A,lutf8,utf8
-     ,fontspec,babel,inputenc,fontenc
+     ,fontspec,babel,inputenc,fontenc,graphicx
      },
     keywordstyle=[1]\color{thegreen},
     comment=[l]\%,
@@ -661,7 +682,7 @@ and the derived files             russianb.ins,
 % as package option – neither global options nor the main key accept them).
 %
 %
-%\section{User's commands}
+% \section{User's commands}
 %
 % In a multilingual document, some typographic rules are language
 % dependent and should apply to the whole document.
@@ -821,41 +842,97 @@ and the derived files             russianb.ins,
 % print  some rare Russian mathematical symbols.
 %
 %
-%    \section{\TeX{}nical details}
+% \section{Customisation}
 %
-%    The packages \pkg{inputenc} and  \pkg{luainputenc}
-%    make Cyrillic letters active so that a compiler converts them into
-%    corresponding |\cyr...| macro at compilation time.
-%    For example, Russian letter `a' matches
-%    macro |\cyra|, and capital Russian letter `A' matches |\CYRA|. The
-%    package \pkg{fontenc} then matches every macro |\cyr...| to corresponding
-%    glyph in a font file depending on a declared font encoding.
+%   Starting with the version 1.3m, the definition of the |\cyrdash| command has
+%   been changed. Recall that |\cyrdash| prints the Cyrillic dash and is called
+%   by the shorthands listed above in the table. Now |\cyrdash| is defined as
+%   an alias of the |\textemdash| vommand, which is available in all font
+%   encodings.  If you agree with some modern tendencies that the length of
+%   the |\textemdash| dash is too long, change the |\cyrdash| command at your
+%   choice. Recommended method is shown in the example below:
+%\begin{verbatim}
+%\usepackage{graphicx}
+%\usepackage[english,russian]{babel}
+%\renewcommand{\cyrdash}{\scalebox{0.75}[1]{\textemdash}}
+%\end{verbatim}
+%   Note that such a definition assumes that the package |graphicx| is also
+%   loaded. The shown above definition partially mimics the state of arts
+%   which has been existed for many years for 8-bit engines but it ensure
+%   that the Cyrillic dash is 25\% shorter than the em-dash for any family
+%   of fonts, not only CM fonts especially designed for legacy \LaTeX.
 %
-%    Nowadays, Unicode makes |\cyr...| macros outdated since both source
-%    file and font file are encoded consistently. These macros
-%    should therefore be removed because mixing them with Unicode characters
-%    breaks sorting mechanism of such utilities as \file{bibtex} and
-%    \file{makeindex}. For the sake of backward compatibility, |\cyr...| are
-%    still kept for \LaTeX, but they are bypassed if Lua\LaTeX\ or  Xe\LaTeX\
-%    are detected.
+%   As explaned in the Implementation section, the |\@Bcdash| command invoked
+%   ny the shorthand |"--~| prints the Cyrillic dash in compound names
+%   of theorems, laws, equations, companies, e.t.c.  composed of the names of
+%   two or more people. By default, |\@Bcdash| adds no spaces around the dash.
+%   Some publishers recommend to add |2pt| spaces on both sides of the dash in
+%   compound names. If you wish to follow such an advice, redefine the
+%   |\@Bcdash| command as shown below:
+%\begin{verbatim}
+%\usepackage[english,russian]{babel}
+%\makeatletter
+%\def\@Bcdash{\leavevmode\ifdim\lastskip>\z@\unskip\fi
+% \nobreak\kern2\p@\cyrdash\penalty\exhyphenpenalty\hskip2\p@\ignorespaces}%
+%\makeatother
+%\end{verbatim}
+%   Note that there is no consensus on what should be the spaces around the
+%   dash in compound names. Although |2pt| spaces are recommended by many
+%   publishers, they make the dash in compound names hardly distinguishable
+%   from regular dash is other parts of the text. As a palliative solution, you
+%   can limit yourself to |1pt| spaces:
+%\begin{verbatim}
+%\usepackage[english,russian]{babel}
+%\makeatletter
+%\def\@Bcdash{\leavevmode\ifdim\lastskip>\z@\unskip\fi
+% \nobreak\kern\p@\cyrdash\penalty\exhyphenpenalty\hskip\p@\ignorespaces}%
+%\makeatother
+%\end{verbatim}
+%   Compound names composed of names of two or more people should be
+%   distinguished from double names of single person such as
+%   Jean-Jacques Rousseau or Nemirovich-Danchenko, which instead of a dash
+%   should be written with a hyphen without spaces around it.
 %
-%    Some inconsistences of prior versions of \file{\filename} was also
-%    overcame in the version 1.2. Those users who used |\selectlanguage| macro,
-%    defined in the core \pkg{babel} system, to switch between
-%    different languages should not worry. However, the macros
-%    |\Russian|, |\Englsih| and their aliases |\Rus|, |\cyr|,
-%    |\Eng| are modified or removed as they did not
-%    conform the mechanism of language switching encoded into the
-%    core of \pkg{babel} and therefore can mess it.
+%   See discussion at \href{https://ru.wikipedia.org/wiki/Обсуждение:Тире#Тире_между_фамилиями_людей}
+%   {Тире между фамилиями людей}.
 %
 %
-%    \section{Known problems}
+% \section{\TeX{}nical details}
 %
-%    Before switching from a legacy 8-bit engine (tex, pdftex) to an Unicode
-%    engine (xetex, luatex) and vise versa delete all |.aux|, |.toc|, |.lot|,
-%    |.lof| files as they might have stored incompatible internal encodings.
+%   The packages \pkg{inputenc} and  \pkg{luainputenc}
+%   make Cyrillic letters active so that a compiler converts them into
+%   corresponding |\cyr...| macro at compilation time.
+%   For example, Russian letter `a' matches
+%   macro |\cyra|, and capital Russian letter `A' matches |\CYRA|. The
+%   package \pkg{fontenc} then matches every macro |\cyr...| to corresponding
+%   glyph in a font file depending on a declared font encoding.
 %
-%    T2* font encodings do not have old Slavonic letter `yat' (Ѣ, ѣ), which is
+%   Nowadays, Unicode makes |\cyr...| macros outdated since both source
+%   file and font file are encoded consistently. These macros
+%   should therefore be removed because mixing them with Unicode characters
+%   breaks sorting mechanism of such utilities as \file{bibtex} and
+%   \file{makeindex}. For the sake of backward compatibility, |\cyr...| are
+%   still kept for \LaTeX, but they are bypassed if Lua\LaTeX\ or  Xe\LaTeX\
+%   are detected.
+%
+%   Some inconsistences of prior versions of \file{\filename} was also
+%   overcame in the version 1.2. Those users who used |\selectlanguage| macro,
+%   defined in the core \pkg{babel} system, to switch between
+%   different languages should not worry. However, the macros
+%   |\Russian|, |\Englsih| and their aliases |\Rus|, |\cyr|,
+%   |\Eng| are modified or removed as they did not
+%   conform the mechanism of language switching encoded into the
+%   core of \pkg{babel} and therefore can mess it.
+%
+%
+% \section{Known problems}
+%
+%    Before switching from a legacy 8-bit engine (|latex|, |pdflatex|) to an
+%    Unicode engine (|xelatex|, |lualstex|) and vise versa delete all |.aux|,
+%    |.toc|, |.lot|, |.lof| files as they might have stored incompatible
+%    internal encodings.
+%
+%    |T2*| font encodings do not have old Slavonic letter `yat' (Ѣ, ѣ), which is
 %    hard-coded in ancient caption names. Be sure to use an Unicode engine
 %    or borrow |\cyryat| and |\CYRYAT| commands from X2 font encoding when setting
 %    the language attribute to ``ancient'', for example:
@@ -1424,15 +1501,25 @@ and the derived files             russianb.ins,
 %    \end{macrocode}
 %
 %   |\@Bcdash| is invoked by |"--~|. It types Cyrillic emdash in compound
-%   names (like Mendeleev--Klapeiron); requires no space characters around and
-%   adds extra space after the dash.
+%   terms (like law of Mendeleev---Klapeiron). Compound names composed
+%   of names of two or more people should be distinguished from double names of
+%   single person (Jean-Jacques Rousseau, Nemirovich-Danchenko), in which
+%   words are separated by a hyphen. There is no consensus on how the dashes
+%   should be used in compound names. Some editors advise that no spaces should
+%   be inserted around the dash. However, most editors require you to insert
+%   |2pt|-spaces on both sides of the dash. The first option is implemented in
+%   this package since the very old versions. The second option can be
+%   implemented as described in the Customisation section.
 %    \begin{macrocode}
 \def\@Bcdash{\leavevmode\ifdim\lastskip>\z@\unskip\fi
  \nobreak\cyrdash\penalty\exhyphenpenalty\hskip\z@skip\ignorespaces}%
+%\def\@Bcdash{\leavevmode\ifdim\lastskip>\z@\unskip\fi
+% \nobreak\kern2\p@\cyrdash\penalty\exhyphenpenalty\hskip2\p@\ignorespaces}%
 %    \end{macrocode}
 %
 %   |\@Ccdash| is invoked by |"--*|. It denotes direct speech and adds small
 %   space after the dash.
+% \changes{1.3m}{2021/01/05}{\cs{@Bcdash} redefined to add 1pt space on both sides}
 %    \begin{macrocode}
 \def\@Ccdash{\leavevmode
  \nobreak\cyrdash\nobreak\hskip.35em\ignorespaces}%
@@ -1460,23 +1547,41 @@ and the derived files             russianb.ins,
 %    typed by the ligature |---| or its variations mentioned in Table
 %    \ref{tab:russian-quote} might change its length after |\selectlanguage|.
 %
-%    The |\cyrdash| macro is not available in Latin encodings such as T1. Therefor
-%    an explicit or implicit call for |\cyrdash| when current language is English
-%    causes an error. For such a case, we provide a fake default. A standard check
-%    such as |\ifx\cyrdash\undefined ...\fi| fails to detect absent definitions
-%    for Latin  encodings since the |\cyrdash| macro is in fact defined. Therefor
-%    we use the |\ProvideTextCommandDefault| method:
+%    The |\cyrdash| macro is not available in Latin encodings, such as |T1|, or
+%    in the Unicode |TU| encoding intended for the |xelatex| and |lualatex|
+%    engines. Therefore, an explicit or implicit call to the command |\cyrdash|
+%    in a situation when the current language differs from Russian, causes an
+%    error. For such cases, we provide a fake default using the
+%    |\ProvideTextCommandDefault| method.
+%
+%    Prior to version 1.3l inclusive, the fake for |\cyrdash| was defined as
+%    a compound character |{\hbox to.8em {--\hss--}}| in the case when the
+%    current language is Russian; in other cases, |\cyrdash| is equated to
+%    |\textemdash|. Thus, for the Russian language, the command |\cyrdash|
+%    prints a dash |0.8em| wide. With the variety of fonts that the |xelatex|
+%    and |lualatex| compilers allow, the usual dash that the |\textemdash| command
+%    prints can have a width of either more than |1em| or less than |1em|.
+%    Consequently, the statement that the Cyrillic dash is 20 percent shorter
+%    than the Latin one loses its meaning. In addition, this statement does not
+%    find convincing confirmation in the specialized literature for editors
+%    of publishing houses. In this regard, it was decided to equate |\cyrdash|
+%    with |\textemdash|.
 % \changes{1.3j}{2017/08/08}{Default for \cs{cyrdash} is provided}
+% \changes{1.3m}{2021/01/05}{\cs{cyrdash} defaults to \cs{textemdash}}
 %    \begin{macrocode}
 \PackageInfo{babel}{Default for \string\cyrdash\space is provided}
 %%\ProvideTextCommandDefault{\cyrdash}{\iflanguage{russian}%
 %%  {\hbox to.8em{--\hss--}}{\textemdash}}
-\ProvideTextCommandDefault{\cyrdash}{\hbox to.8em{--\hss--}}
+\ProvideTextCommandDefault{\cyrdash}{\textemdash}
 %    \end{macrocode}%
-%
-%    The |\cyrdash| macro is not defined in the Unicode encoding TU. The fake
-%    definition given above cope with this case.
-%
+%    With this definition of |\cyrdash|, the dash width is entirely determined
+%    by the selected font. However, it is believed that the dash length in many
+%    fonts is too large. Those who adhere to such a bud of vision can change
+%    the definition of the |\cyrdash| command by placing the declaration
+%    |\renewcommand{\cyrdash}| |{\scalebox{0.75}[1]{\textemdash}}|
+%    somewhere after the call to the |babel| package. Unfortunately, such a
+%    definition of the |\cyirdash| command cannot be used inside current
+%    package, since the command |\scalebox| is defined in the |graphicx| package.
 %
 %   \subsection{Switching to/from Russian}
 %
@@ -2184,7 +2289,7 @@ and the derived files             russianb.ins,
 %\iffalse
 %</code>
 %\fi
-%\CheckSum{2358}
+%\CheckSum{2374}
 %\Finale
 %
 %%
